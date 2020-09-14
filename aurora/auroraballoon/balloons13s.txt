@@ -1,0 +1,10 @@
+//balloons4.txt
+
+arrow2.x,182
+arrow2.y,11
+
+arrow3.x,182
+arrow3.y,183
+
+onlinemarker.x,8
+onlinemarker.y,180
