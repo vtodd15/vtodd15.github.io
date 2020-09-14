@@ -1,0 +1,9 @@
+Charset,UTF-8
+install,644885264
+homeurl_found,1
+surfacecount,81
+homeurl,http://ukagakadreamteam.com/hosting/user00623486/ghost/aurora_dot_exe/
+update_result,NG(404)
+firstboot,644885264
+commitmemorysize,1945164
+lastboot,653413573
