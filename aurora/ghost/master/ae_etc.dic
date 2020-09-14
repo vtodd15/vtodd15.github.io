@@ -375,6 +375,20 @@ OnUpdate.OnMD5CompareFailure
 	"\0\s[3]Oh no...\w8\e"
  }
 
+//balloon update stuff
+OnUpdateOtherComplete{
+
+	if reference3 == "balloon" {
+	
+		if reference0 == "changed" {
+			"\0\s[5]My balloon updated successfully!\w8\e"
+		} else {
+			"\0\s[0]My balloon was already up to date.\w8\e"
+		}
+		
+	}
+
+}
  
  
  //**** Headlines and RSS Feeds *********************************************************
