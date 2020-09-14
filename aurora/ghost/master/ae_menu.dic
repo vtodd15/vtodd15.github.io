@@ -78,7 +78,7 @@ MenuRun
 	\![*]\q[Misc,OnMiscMenu]\n\n[half]/
 	\![*]\q[Config,configmenu]\n/
 	\![*]\q[Functions,dosomething]\n\n[half]/
-	\![*]\q[Test variable,testvariable]\n\n[half]/
+	//\![*]\q[Test variable,testvariable]\n\n[half]/
  	\![*]\q[Nevermind,CANCEL]\n\n[half]%(wd) %(nowhour):%(nowmin) %(_ap),\n%(month).%(day).%(year)"
 	
 	--
