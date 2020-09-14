@@ -284,6 +284,7 @@ OnUpdateBegin
  
 OnUpdateReady
  {
+	reference[0] += 1//reference[0] shows 1 less file than there actually is fsr
 	"\0\s[0]I found %(reference[0]) new files!\w8\e"
 	
 	//reference0 here storing the number of new files. You don't have to use it if you don't want to.
