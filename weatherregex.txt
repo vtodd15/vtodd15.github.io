@@ -19,5 +19,5 @@ data-testid="lowTempValue">/<span data-testid="TemperatureValue" class="[\d|\w|_
 data-testid="detailsTemperature" class="[\d|\w|_|-]*"><span data-testid="TemperatureValue" class="[\d|\w|_|-]*">(-?\d*)°</span>
 Feels Like</span><span data-testid="TemperatureValue" class="[\d|\w|_|-]*">(-?\d*)°</span></div><
 </svg><span data-testid="PercentageValue">(\d*)%</span></div><div data-testid="
-<span data-testid="Wind" class="[\d|\w|_|-| ]*">([\w|\s]*)<!-- -->([\w|\s]*)</span></div>
+<span data-testid="Wind" class="[-\d\w\s]*">([\w\s]*)<!-- -->([\w\s]*)</span></div>
 Humidity</span><span data-testid="PercentageValue" class="[\d|\w|_|-]*">(\d*)%</span>
