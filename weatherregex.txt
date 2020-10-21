@@ -6,7 +6,7 @@ estid="PercentageValue">(\d*)%</span></div>
 <div data-testid="wxPhrase" class="[\d|\w|_|-]*">([\w|\s]*)</div></div>
 <h1 class="[\d|\w|_|-]*">(.*) Weather</h1><div class=
 iesListItem--description--[\d|\w|_|-]*">([\w|\s]*) pollen is very high in your area</p></
-<h[\d] data-testid="daypartName" class="[\d|\w|_|-]*">([\w|\s]*)</h[\d]><div 
+<h[\d] data-testid="daypartName" class="[\d|\w|_|-]*">([\w|\s]*.?)</h[\d]><div 
 <span class="[\d|\w|_|-]*">([\w|\s]*)</span></div>
 detailsTemperature" class="[\d|\w|_|-]*"><span data-testid="TemperatureValue" class="[\d|\w|_|-]*">(--|(-?\d*)).</span>
 data-testid="lowTempValue">/<span data-testid="TemperatureValue" class="[\d|\w|_|-]*">(-?\d*)°</span
