@@ -14,7 +14,7 @@ data-testid="lowTempValue">/<span data-testid="TemperatureValue" class="[\d|\w|_
 [\d|\w|_|-]* undefined">([\w|\s]*)<!-- -->([\w|\s|/]*)</span></div>
 <span data-testid="PercentageValue" class="[\d|\w|_|-]*">(\d*)%</span></div></li><li data-testid="uvIndexSection"
 <h3 class="[\d|\w|_|-]*"><span class="[\d|\w|_|-]*">[\w|\s]*</span> . (Night|Day)</h3>
-<h2 data-testid="daypartName" class="[\d|\w|_|-]*">(\d*:?\d* ?[[p|a]m]?)</h[\d]><div
+<h2 data-testid="daypartName" class="[\d|\w|_|-]*">(\d*:?\d* ?[[p|a]?m]?)</h[\d]><div
 <span class="[\d|\w|_|-]*">([\w|\s]*)</span></div>
 data-testid="detailsTemperature" class="[\d|\w|_|-]*"><span data-testid="TemperatureValue" class="[\d|\w|_|-]*">(-?\d*)°</span>
 Feels Like</span><span data-testid="TemperatureValue" class="[\d|\w|_|-]*">(-?\d*)°</span></div><
