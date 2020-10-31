@@ -27,6 +27,7 @@ dic, ae_anchor.dic
 dic, ae_games.dic
 dic, ae_productivity.dic
 dic, ae_misc.dic
+dic, ae_shop_items.dic
 
 //---- Log Location -------------------------------------------------------------------------
 //I'm not entirely sure what this does, but basically don't touch it.

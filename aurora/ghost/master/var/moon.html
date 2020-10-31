@@ -67,7 +67,7 @@
             
      
            
-            var dateInURL = 09+"/"+03+"/"+2020;
+            var dateInURL = 09+"/"+18+"/"+2020;
           
             
              //add copy for today
@@ -95,7 +95,7 @@
    
   // Handler for .ready() called.
 
-    var jArray= {"2":["<span style='color:#c7b699'><b>September 3<\/b><\/span>","Illumination: <span>98%\n<\/span>","Sun Angle: <span>0.53","Sun Distance: <span>150,<\/span>861,<\/span>612.03","Moon Distance: <span>402,<\/span>665.52","Moon Age: <span>15.95","Moon Angle: <span>0.49","Waning Gibbous","September 3, 2020","September","Phase: <span>Waning Gibbous<\/span>","September 3"],"0":["<b>September 1<\/b>","99%\n","Sun Angle: 0.52840903833592","Sun Distance: 150934490.74824","Moon Distance: 396553.69811092","Moon Age: 14.096595836533","Moon Angle: 0.50222242044076","Waxing Gibbous","September 1"],"1":["<b>September 2<\/b>","100%\n","Sun Angle: 0.52853596282994","Sun Distance: 150898244.80621","Moon Distance: 399985.13037269","Moon Age: 15.028418750022","Moon Angle: 0.49791390473549","Full Moon","September 2"],"3":["<b>September 4<\/b>","95%\n","Sun Angle: 0.52879402746679","Sun Distance: 150824602.70981","Moon Distance: 404494.82179423","Moon Age: 16.853911541435","Moon Angle: 0.4923626888883","Waning Gibbous","September 4"],"4":["<b>September 5<\/b>","90%\n","Sun Angle: 0.5289250990305","Sun Distance: 150787227.25427","Moon Distance: 405405.57853754","Moon Age: 17.752036689635","Moon Angle: 0.49125658018432","Waning Gibbous","September 5"]};
+    var jArray= {"2":["<span style='color:#c7b699'><b>September 18<\/b><\/span>","Illumination: <span>2%\n<\/span>","Sun Angle: <span>0.53","Sun Distance: <span>150,<\/span>272,<\/span>969.39","Moon Distance: <span>363,<\/span>975.19","Moon Age: <span>1.21","Moon Angle: <span>0.55","Waxing Crescent","September 18, 2020","September","Phase: <span>Waxing Crescent<\/span>","September 18"],"0":["<b>September 16<\/b>","1%\n","Sun Angle: 0.53044552395782","Sun Distance: 150355023.28858","Moon Distance: 368799.96012325","Moon Age: 28.430352784141","Moon Angle: 0.54001675605779","Waning Crescent","September 16"],"1":["<b>September 17<\/b>","0%\n","Sun Angle: 0.53058991465976","Sun Distance: 150314106.81664","Moon Distance: 365847.53709918","Moon Age: 0.04607573644412","Moon Angle: 0.54437474057946","New Moon","September 17"],"3":["<b>September 19<\/b>","6%\n","Sun Angle: 0.53088123259896","Sun Distance: 150231622.83879","Moon Distance: 363298.83826127","Moon Age: 2.363994785467","Moon Angle: 0.54819376536727","Waxing Crescent","September 19"],"4":["<b>September 20<\/b>","13%\n","Sun Angle: 0.53102807856144","Sun Distance: 150190079.07088","Moon Distance: 363852.73965238","Moon Age: 3.5086947954676","Moon Angle: 0.54735923739443","Waxing Crescent","September 20"]};
     
     
         
@@ -260,12 +260,12 @@ $('#monthPhaseBtn').prepend(monthCall + " Full moon");
     //next day adn previous day
     
     function previousDay(){
-        window.location.href = '/phase/'+09+"/"+02+"/"+2020 ;
+        window.location.href = '/phase/'+09+"/"+17+"/"+2020 ;
           
     }
     
     function nextDay(){
-        window.location.href = '/phase/'+09+"/"+04+"/"+2020 ;
+        window.location.href = '/phase/'+09+"/"+19+"/"+2020 ;
           
     }
     
@@ -1280,31 +1280,31 @@ transform-origin: top left;
         <td valign="top" align="center" class="noSmallScreen">
             <div id="minus2_" style="position:relative">
             <div id="TopMinus2" style="position:absolute; top:100px; width:100%; text-align:center; z-index:2"></div>
-            <img class="moonNotToday" style="margin-top:130px; margin-bottom:10px;" src="/images/today_phase/small/moon_day_WaxG_95.png" width="90" height="90" alt="moon_phase_WaxG_95" /><br>
+            <img class="moonNotToday" style="margin-top:130px; margin-bottom:10px;" src="/images/today_phase/small/moon_day_WanC_0.png" width="90" height="90" alt="moon_phase_WanC_0" /><br>
             </div>
         </td>
        <!-- <td class="SmallScreenArrowsHold"></td> -->
             <td valign="top" align="center">
                 <div id="minus1_" style="position:relative;">
                 <div id="TopMinus1" style="position:absolute; top:60px; width:100%; text-align:center; z-index:2"></div>
-                <img class="moonNotToday" style="margin-top:90px; margin-bottom:10px;" src="/images/today_phase/small/moon_day_full.png" width="90" height="90" alt="moon_phase_full" /><br>
+                <img class="moonNotToday" style="margin-top:90px; margin-bottom:10px;" src="/images/today_phase/small/moon_day_new.png" width="90" height="90" alt="moon_phase_new" /><br>
                 </div>
             </td>
                 <td align="center" valign="top" id="today_">
-                    <div id="todayMoonContainer"><img src="/images/today_phase/moon_day_WanG_95.jpg" width="164" height="164" alt="moon_phase_WanG_95" /></div>
+                    <div id="todayMoonContainer"><img src="/images/today_phase/moon_day_WaxC_0.jpg" width="164" height="164" alt="moon_phase_WaxC_0" /></div>
                     <!--<div style="cursor: pointer; display: block" id="tester">share</div>-->
                 </td>
             <td valign="top" align="center">
                 <div id="plus1_" style="position:relative">
                 <div id="TopPlus1" style="position:absolute; top:60px; width:100%; text-align:center; z-index:2"></div>
-                <img class="moonNotToday" style="margin-top:90px; margin-bottom:10px;" src="/images/today_phase/small/moon_day_WanG_95.png" width="90" height="90" alt="moon_phase_WanG_95" /><br>
+                <img class="moonNotToday" style="margin-top:90px; margin-bottom:10px;" src="/images/today_phase/small/moon_day_WaxC_5.png" width="90" height="90" alt="moon_phase_WaxC_5" /><br>
                 </div>
         </td>
         <!--<td class="SmallScreenArrows"></td>-->
         <td valign="top" align="center" class="noSmallScreen">
             <div id="plus2_" style="position:relative">
             <div id="TopPlus2" style="position:absolute; top:100px; width:100%; text-align:center; z-index:2"></div>
-            <img class="moonNotToday" style="margin-top:130px; margin-bottom:10px;" src="/images/today_phase/small/moon_day_WanG_90.png" width="90" height="90" alt="moon_phase_WanG_90" /><br>
+            <img class="moonNotToday" style="margin-top:130px; margin-bottom:10px;" src="/images/today_phase/small/moon_day_WaxC_10.png" width="90" height="90" alt="moon_phase_WaxC_10" /><br>
             </div>
         </td>
     </tr>
@@ -1355,9 +1355,9 @@ transform-origin: top left;
     
     <p>Visit the <a style="color: #fff" href="/calendar/september/2020"> September 2020 Moon Phases Calendar</a> to see all the daily moon phase for this month.</p>
 
-    <h2>Today's Waning Gibbous Phase</h2>
+    <h2>Today's Waxing Crescent Phase</h2>
     <p>
-The Waning Gibbous on September 3 has an illumination of 98%. This is the percentage of the Moon illuminated by the Sun. The illumination is constantly changing and can vary up to 10% a day. On September 3 the Moon is 15.95 days old. This refers to how many days it has been since the last New Moon. It takes 29.53 days for the Moon to orbit the Earth and go through the lunar cycle of all 8 Moon phases. 
+The Waxing Crescent on September 18 has an illumination of 2%. This is the percentage of the Moon illuminated by the Sun. The illumination is constantly changing and can vary up to 10% a day. On September 18 the Moon is 1.21 days old. This refers to how many days it has been since the last New Moon. It takes 29.53 days for the Moon to orbit the Earth and go through the lunar cycle of all 8 Moon phases. 
 <div id="notTodayGone">
     <h2>The 8 Lunar Phases</h2>
     
@@ -1450,9 +1450,9 @@ The Waning Gibbous on September 3 has an illumination of 98%. This is the percen
     
     <h2 class="phaseSt" id="titleMR" style="font-weight:bold; margin-bottom:12px;"> Moonrise and Moonset</h2>
     
-                <img style="position:absolute; z-index:2; top:105px; left:13%;" src="/images/today_phase/small/moon_day_WanG_95.png" width="40" height="40" alt="WanG_95." />          
-                <img style="position:absolute; z-index:2; top:30px; left:50%; margin-left:-30px;" src="/images/today_phase/small/moon_day_WanG_95.png" width="60" height="60" alt="WanG_95" />
-                <img style="position:absolute; z-index:2; top:105px; right:13%; " src="/images/today_phase/small/moon_day_WanG_95.png" width="40" height="40" alt="WanG_95" />
+                <img style="position:absolute; z-index:2; top:105px; left:13%;" src="/images/today_phase/small/moon_day_WaxC_0.png" width="40" height="40" alt="WaxC_0." />          
+                <img style="position:absolute; z-index:2; top:30px; left:50%; margin-left:-30px;" src="/images/today_phase/small/moon_day_WaxC_0.png" width="60" height="60" alt="WaxC_0" />
+                <img style="position:absolute; z-index:2; top:105px; right:13%; " src="/images/today_phase/small/moon_day_WaxC_0.png" width="40" height="40" alt="WaxC_0" />
     
             <img id="riseSetImage" src="" width="100%" height="auto" alt="moon rise" /> 
             
@@ -2409,7 +2409,7 @@ Click Here to find out</a></div>
 				'og:url': "https://www.moongiant.com/phase/today/",
 				'og:title': "xxx xxx",
 				'og:description': "a long disccccccription here",
-				'og:image': "https://www.moongiant.com/images/today_phase/moon_day_WanG_95.jpg"
+				'og:image': "https://www.moongiant.com/images/today_phase/moon_day_WaxC_0.jpg"
 			}
 		})
 	},
