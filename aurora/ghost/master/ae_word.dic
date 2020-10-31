@@ -151,8 +151,66 @@ aethoughts{
 	"my sibling"
 	"video game speedruns"
 	"bubble tea"
-	"that one meme TikTok"
+	"that one TikTok meme"
 	"the Homestuck kickstarter"
+	"vine compilations"
+	"other vtubers"
+
+}
+
+oldcarddisp{
+
+	"\f[color,%(oldcard[3])]%(oldcard[2])%(oldcard[0])\f[color,default]"
+
+}
+
+newcarddisp {
+
+	"\f[color,%(card[3])]%(card[2])%(card[0])\f[color,default]"
+
+}
+
+songlyric {
+	"Singing hey!\w4 hey!\w4 hey!\w4 okay!\w8 The world is ours."
+	"You can't see me behind the screen.\w8 I'm half human and half machine."
+	"The only one who brings me joy is my computer boy."
+	"I caught you in my interweb.\w8 I caught you in my internet"
+	"My breathing code is b-binary.\w8 And my lunch is still processing"
+	"I think you need a software upgrade.\w8 Because you run ten minutes too late"
+	"Exponentially, every day I'm growing my memory.\w8 You wouldn't believe"
+
+}
+
+kaomoji{
+
+	"(* ^ ω ^)"
+	"٩(◕‿◕｡)۶"
+	"☆*:.｡.o(≧▽≦)o.｡.:*☆"
+	"(ﾉ´ヮ`)ﾉ*: ･ﾟ"
+	"(〃＾▽＾〃)"
+	"☆⌒(ゝ。∂)"
+	"(ﾉ>ω<)ﾉ :｡･:*:･ﾟ’★,｡･:*:･ﾟ’☆"
+	"(⊃｡•́‿•̀｡)⊃━✿✿✿✿✿✿"
+	"✺◟( • ω • )◞✺"
+	"(◕‿◕✿)"
+
+}
+
+cakeflavor{
+
+	"chocolate"
+	"confetti cake"
+	"vanilla"
+	"red velvet" 
+	"carrot cake"
+	"black forest"
+	"creamsicle"
+	"key lime"
+	"limoncello"
+	"caramel"
+	"peanut butter"
+	"strawberry"
+
 
 }
 

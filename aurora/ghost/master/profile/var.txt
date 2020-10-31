@@ -1,9 +1,9 @@
 Charset,UTF-8
 install,644885264
 homeurl_found,1
-surfacecount,81
-homeurl,http://ukagakadreamteam.com/hosting/user00623486/ghost/aurora_dot_exe/
-update_result,NG(404)
+surfacecount,95
+homeurl,https://vtodd15.github.io/aurora/
+update_result,OK(3)
 firstboot,644885264
-commitmemorysize,1945164
-lastboot,653413573
+commitmemorysize,3172069
+lastboot,657426526
