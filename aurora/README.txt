@@ -1,9 +1,8 @@
 --Readme--
 
-Hello! Thank you for downloading Aurora.EXE! She's an original character that, in her universe, is a virtual youtuber that shares an ukagaka of herself to her fans. Currently there is no relationship system, so don't feel afraid you'll make her angry. She'll cheer you on no matter what!
+Hello! Thank you for downloading Aurora.EXE! She's an original character that, in her universe, is a virtual youtuber that shares an ukagaka of herself to her fans. She has a variety of utilitarian and entertainment functions, such as sleep reminders and games. 
 
-Currently there are no content warnings for Aurora, but future updates will include horror elements, in visuals (able to be toggled off) and text. 
-
+Aurora has horror content in visuals and text, but it is off by default and can be toggled on in her config menu. Please note that her story will contain mild horror content in text regardless of the horror setting. Specific content warnings are at the bottom of this readme.
 -------------------------------------------
 
 Aurora was created from a template made by Zarla, who you can find in the following places:
@@ -48,12 +47,13 @@ Version History
 		-Purchased balloons can be swapped between in the Collectibles menu, along with other externally downloaded balloons
 		-Gifts can be given to Aurora from the Collectibles menu
 		-AP (Aurora points) are earned through games, passing time with Aurora open, and achievements (claimed using the Misc -> Stats menu)
-		-Achivements include work sessions done and times Aurora has been petted/booped
+		-Achievements include work sessions done and times Aurora has been petted/booped
 	Misc
 		-Thumbnail updated
 		-Night mode added in config. Aurora will no longer bug you to go to sleep.
 		-Extra collision added on her main surface
 		-More random dialogue
+		-New minigame added: Higher or Lower
 	???
 		-If you boot up Aurora on Halloween, or late at night, there's a chance something eerie will happen... (Spooky content must be enabled)
 
@@ -74,3 +74,10 @@ Version History
 		-Revamped the menu code so it is split into different files. Nothing changed on the front end, but it's easier to read through and debug now.
 		-Added the option to have Aurora talk every 10 minutes
 10.03.19 - v1.0: First release!
+
+-------------------------------------------
+
+Content Warnings for her spooky mode
+
+Visuals: Mild eye/body horror, jumpscares, glitched/eyestrain/flashy imagery
+Text: Glitched text, general ominous/paranoia/anxiety inducing messages
