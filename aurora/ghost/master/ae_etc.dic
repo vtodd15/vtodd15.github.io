@@ -12,33 +12,28 @@
 
 OnFileDrop2
 {
-	if creepymode {
-		"\0\s[666]no\w8\w8 :)\e"
-	} else {
-		
-		_filepath = SPLITPATH(reference0)
-		_filename = _filepath[2]
-		_fileext = TOLOWER(_filepath[3])
-		case _fileext
+	_filepath = SPLITPATH(reference0)
+	_filename = _filepath[2]
+	_fileext = TOLOWER(_filepath[3])
+	case _fileext
+	{
+		when ".jpg", ".jpeg", ".bmp" //These are the formats your ghost will recognize as image files to set as the background. I tested this with .png files and it does not work, so don't bother adding that as an option.
 		{
-			when ".jpg", ".jpeg", ".bmp" //These are the formats your ghost will recognize as image files to set as the background. I tested this with .png files and it does not work, so don't bother adding that as an option.
-			{
-				Wallpaperfile = reference0
-				
-				"\0\s[0]The file you gave me is %(_filename)%(_fileext).\w8\0\s[0]What wallpaper style do you want?\n\n[half]/
-				\q[Centered,SetWallpaper_0]\n/
-				\q[Tiled,SetWallpaper_1]\n/
-				\q[Stretched,SetWallpaper_2]\n\n[half]/
-				\q[No thanks,SetWallpaper_Cancel]\e"
-			}
-			when ".mid", ".wav", ".mp3", ".wma", ".au" //Other file formats you might want to give your ghost a specific response to.
-			{
-				"\0\s[0]%(_filename)%(_fileext) is a music file.\w8 Someday I'll be able to play these.\e"
-			}
-			others //Any other file format. As a note here, if you drop something ghost-related on them that does not have an install.txt, then they won't install it and will just say this response. If you are testing your balloon or nar files and you get this response instead of a proper installation, you should check and make sure you have an install.txt in the file!
-			{
-				"\0\s[0]You gave me %(_filename)%(_fileext).\w8 I can't do anything with that... yet.\e"
-			}
+			Wallpaperfile = reference0
+			
+			"\0\s[0]The file you gave me is %(_filename)%(_fileext).\w8\0\s[0]What wallpaper style do you want?\n\n[half]/
+			\q[Centered,SetWallpaper_0]\n/
+			\q[Tiled,SetWallpaper_1]\n/
+			\q[Stretched,SetWallpaper_2]\n\n[half]/
+			\q[No thanks,SetWallpaper_Cancel]\e"
+		}
+		when ".mid", ".wav", ".mp3", ".wma", ".au" //Other file formats you might want to give your ghost a specific response to.
+		{
+			"\0\s[0]%(_filename)%(_fileext) is a music file.\w8 Someday I'll be able to play these.\e"
+		}
+		others //Any other file format. As a note here, if you drop something ghost-related on them that does not have an install.txt, then they won't install it and will just say this response. If you are testing your balloon or nar files and you get this response instead of a proper installation, you should check and make sure you have an install.txt in the file!
+		{
+			"\0\s[0]You gave me %(_filename)%(_fileext).\w8 I can't do anything with that... yet.\e"
 		}
 	}
 }
@@ -68,11 +63,7 @@ Select.SetWallpaper_Cancel
  
 OnInstallBegin
  {
-	if creepymode {
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"\0\s[2]Oh!\w8 It looks like I can install this!\w8\s[0] Let me do that real quick.\w8\e"
-	}
+	"\0\s[2]Oh!\w8 It looks like I can install this!\w8\s[0] Let me do that real quick.\w8\e"
  }
 
  //---- OnInstallComplete -------------------------------------------------------
@@ -80,46 +71,41 @@ OnInstallBegin
  
 OnInstallComplete
  {
-	if creepymode {
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		
-		"\0" //this means your main character will be speaking first, therefore the \s[] at the beginning of each line will be defining your main character's pose.
-		--
-		if reference0 == "shell" //This is checking to see if what you installed is classified as a shell in the install.txt. Remember the line in install.txt that said type,ghost or type,shell? This is why that line is important, that's what tells the program what it's installing like so.
-		{	
-			if reference1 == "Hypothetical Shell that doesn't actually exist" //This is the name of your shell as you defined in descript.txt in the shell folder.
-			{
-			"\s[0]We have installed Hypothetical Shell.\w8\0\s[0]Truncated for space.\e"
-			//Replace if needed.
-			}
-			elseif reference1 == "Another totally real shell wow" //As in other files, you can use elseif to expand a list like this to include as many shells as you have or think you'll make. See bootend.dic for more details about elseif.
-			{
-			"\s[0]We have installed another totally real shell.\e"
-			//Replace if needed.
-			}
-			else //For any other shell they may install.
-			{
-			"\s[0]We've installed a new shell.\w8\0\s[0]It's called  %(reference1).\e"
-			//%(reference1) here would be the name of the shell they installed. Replace if needed.
-			}
-		}
-		elseif reference0 == "ghost" //if the type of the file they're installing is a ghost.
+	"\0" //this means your main character will be speaking first, therefore the \s[] at the beginning of each line will be defining your main character's pose.
+ 	--
+	if reference0 == "shell" //This is checking to see if what you installed is classified as a shell in the install.txt. Remember the line in install.txt that said type,ghost or type,shell? This is why that line is important, that's what tells the program what it's installing like so.
+ 	{	
+		if reference1 == "Hypothetical Shell that doesn't actually exist" //This is the name of your shell as you defined in descript.txt in the shell folder.
 		{
-			"\s[0]There's a new ghost in your collection!\w8\0\s[0] They're called %(reference1).\e"
-			//Reference1 here would be the name of the ghost. Replace as needed.
+		"\s[0]We have installed Hypothetical Shell.\w8\0\s[0]Truncated for space.\e"
+		//Replace if needed.
 		}
-		elseif reference0 == "balloon" //if the type of file is a balloon
+		elseif reference1 == "Another totally real shell wow" //As in other files, you can use elseif to expand a list like this to include as many shells as you have or think you'll make. See bootend.dic for more details about elseif.
 		{
-			"\s[0]I've installed a new balloon!\w8\0\s[0] It's called %(reference1).\e"
-			//Reference1 here would be the name of the balloon. Replace as needed.
+		"\s[0]We have installed another totally real shell.\e"
+		//Replace if needed.
 		}
-		elseif reference0 == "plugin" //if the type of file is a plug-in, like a saori of some kind.
+		else //For any other shell they may install.
 		{
-			"\s[0]I've installed a new plug-in.\w8 It's called %(reference1).\e"
-			//Reference1 here would be the name of the plug-in. Replace as needed.
+		"\s[0]We've installed a new shell.\w8\0\s[0]It's called  %(reference1).\e"
+		//%(reference1) here would be the name of the shell they installed. Replace if needed.
 		}
-	}
+ 	}
+	elseif reference0 == "ghost" //if the type of the file they're installing is a ghost.
+ 	{
+		"\s[0]There's a new ghost in your collection!\w8\0\s[0] They're called %(reference1).\e"
+		//Reference1 here would be the name of the ghost. Replace as needed.
+ 	}
+	elseif reference0 == "balloon" //if the type of file is a balloon
+ 	{
+		"\s[0]I've installed a new balloon!\w8\0\s[0] It's called %(reference1).\e"
+		//Reference1 here would be the name of the balloon. Replace as needed.
+ 	}
+	elseif reference0 == "plugin" //if the type of file is a plug-in, like a saori of some kind.
+ 	{
+		"\s[0]I've installed a new plug-in.\w8 It's called %(reference1).\e"
+		//Reference1 here would be the name of the plug-in. Replace as needed.
+ 	}
 }
 
 //---- OnInstallFailure -------------------------------------------------------
@@ -127,22 +113,17 @@ OnInstallComplete
 
 OnInstallFailure
  {
-	if creepymode {
-		"\0\s[666].\w4.\w4.\w4bad\w4\e"
-	} else {
-	
-		"\0\s[4]Oh...\w8 I wasn't able to install it.\n\n[half]\w5" //this first bit of dialogue begins the explanation of what happened. You can replace this with an appropriate intro statement.
-		--
-		if reference0 == "unsupported" //These if statements determine how it happened to finish the piece of dialogue. This checks if the reason it failed is because it was unsupported.
-		{
-		"This file type is unsupported.\w8 Sorry! ;_;\e"
-		//Replace with whatever dialogue for an unsupported file you may come up with.
-		}	
-		elseif reference0 == "extraction" //This checks if the file didn't extract properly.
-		{
-		"The file could not be extracted properly.\w8 Sorry! ;_;\e"
-		//See above but for a failed extraction.
-		}
+	"\0\s[4]Oh...\w8 I wasn't able to install it.\n\n[half]\w5" //this first bit of dialogue begins the explanation of what happened. You can replace this with an appropriate intro statement.
+	--
+	if reference0 == "unsupported" //These if statements determine how it happened to finish the piece of dialogue. This checks if the reason it failed is because it was unsupported.
+	{
+	"This file type is unsupported.\w8 Sorry! ;_;\e"
+	//Replace with whatever dialogue for an unsupported file you may come up with.
+	}	
+	elseif reference0 == "extraction" //This checks if the file didn't extract properly.
+	{
+	"The file could not be extracted properly.\w8 Sorry! ;_;\e"
+	//See above but for a failed extraction.
 	}
  }
  
@@ -151,11 +132,8 @@ OnInstallFailure
  
 OnInstallRefuse
  {
-	if creepymode {
-		"\0\s[666].\w4.\w4.\w4no\w4\e"
-	} else {
-		"\0\s[4]I can't install this... \w8\s[0]It looks like it's for %(reference0) instead.\e"
-	}
+	"\0\s[4]I can't install this... \w8\s[0]It looks like it's for %(reference0) instead.\e"
+	
 	//reference0 in this function refers to the ghost this file is associated with, probably the name of the ghost listed in its install.txt file. You would see this if you dropped a shell made for a different ghost on your current ghost, for example. They can't install a shell for themselves they can't use, right? Anyway, replace this with what you wish, you can use the reference0 envelope or not if you want.
  }
 
@@ -169,11 +147,7 @@ OnInstallRefuse
 
 OnVanishSelecting
 {
-	if creepymode{
-		"\0\s[666]let me out.\w8\w8 let me out.\e"
-	} else {
-		"\0\s[0]Oh?\w8 You want to uninstall me?\w8\s[3] Are you sure...?\e"
-	}
+	"\0\s[0]Oh?\w8 You want to uninstall me?\w8\s[3] Are you sure...?\e"
 }
 
 //OnVanishSelected
@@ -181,11 +155,7 @@ OnVanishSelecting
 
 OnVanishSelected
 {
-	if creepymode {
-		"\0\s[666]thank you.\w8 :)\w8\w8\n\nsee you soon\e"
-	} else {
-		"\0\s[3]Okay...\s[4]\w8 Sad to say goodbye, but I understand.\w8 See ya later, maybe?\w9\w9\e"
-	}
+	"\0\s[3]Okay...\s[4]\w8 Sad to say goodbye, but I understand.\w8 See ya later, maybe?\w9\w9\e"
 }
 
 
@@ -194,11 +164,7 @@ OnVanishSelected
 
 OnVanishCancel
 {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"\0\s[0]Oh, phew.\w8 You had me worried there for a second.\e"
-	}
+	"\0\s[0]Oh, phew.\w8 You had me worried there for a second.\e"
 }
 
 //--TalkVanishButtonHold
@@ -206,11 +172,7 @@ OnVanishCancel
 
 TalkVanishButtonHold
 {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"\0\s[0]Hey...\w8\s[3] You're holding down the uninstall button...\e"
-	}
+	"\0\s[0]Hey...\w8\s[3] You're holding down the uninstall button...\e"
 }
 
 
@@ -219,11 +181,7 @@ TalkVanishButtonHold
  
 OnVanished
  {
-	if creepymode{
-		"\0\s[666]%(reference0) has been freed.\e"
-	} else {
-		"\1\s[10]\0\s[0]Bye-bye %(reference0)!\w8 Hope you had fun while you were here!\e"
-	}
+	"\1\s[10]\0\s[0]Bye-bye %(reference0)!\w8 Hope you had fun while you were here!\e"
 	
 	//reference0 here is the name of the other ghost.
 }
@@ -246,11 +204,8 @@ OnVanished
  
 OnBIFFBegin
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"\0\s[0]O-kay!\w8 Gonna check your email now.\e"
-	}
+	"\0\s[0]O-kay!\w8 Gonna check your email now.\e"
+	
  }
 
  
@@ -259,32 +214,27 @@ OnBIFFBegin
  
 OnBIFFComplete
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		
-		if reference0 == 0 //If you have no new mail.
-		{
-			"\0\s[0]Looks like you didn't have any new mail.\w8 You're all caught up!\e"
-		}
-		elseif reference0 == 1 //If you have one new email.
-		{
-			"\0\s[0]You have one new mail.\w8 Ooo, I wonder who it's from!\e"
-		}
-		elseif reference0 > 1 && reference0 < 11 //If you have more than one email but less than eleven.
-		{
-			"\0\s[0]Looks like there are %(reference0) new emails.\w8 Just a couple this time.\e"
-			//reference0 here stores the amount of new email it finds.
-		}
-		elseif reference0 > 100 //If there are over one hundred new emails.
-		{
-			"\0\s[0]You have %(reference0) new emails.\w8\s[2] That's a lot!!\e"
-		}
-		else //For any other number of emails.
-		{
-			"\0\s[0]I found %(reference0) new emails.\w8 Better check 'em soon!\e"
-		}
+	if reference0 == 0 //If you have no new mail.
+ 	{
+ 		"\0\s[0]Looks like you didn't have any new mail.\w8 You're all caught up!\e"
 	}
+	elseif reference0 == 1 //If you have one new email.
+ 	{
+ 		"\0\s[0]You have one new mail.\w8 Ooo, I wonder who it's from!\e"
+	}
+	elseif reference0 > 1 && reference0 < 11 //If you have more than one email but less than eleven.
+	{
+		"\0\s[0]Looks like there are %(reference0) new emails.\w8 Just a couple this time.\e"
+		//reference0 here stores the amount of new email it finds.
+	}
+	elseif reference0 > 100 //If there are over one hundred new emails.
+	{
+		"\0\s[0]You have %(reference0) new emails.\w8\s[2] That's a lot!!\e"
+	}
+ 	else //For any other number of emails.
+	{
+		"\0\s[0]I found %(reference0) new emails.\w8 Better check 'em soon!\e"
+ 	}
 }
 
  //---- OnBIFFFailure ---------------------------------------------------------------
@@ -292,31 +242,26 @@ OnBIFFComplete
  
 OnBIFFFailure
  {
-	if creepymode {
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		
-		if reference0 == "timeout" //If the connection times out.
-		{
-			"\0\s[0]Oh...\w8 The connection timed out...\e"
-		}
-		elseif reference0 == "kick" //If the account blocks the ghost from accessing it. I think gmail may do this at first to try and protect your account from unapproved applications using it. It gives you the option to change the setting in the warning email they send you about it.
-		{
-			"\0\s[0]I can't access your email account for some reason.\w8 Maybe check your email to see if there's a message about this...?\e"
-		}
-		elseif reference0 == "defect" //If the information put into the POP menu is wrong.
-		{
-			"\0\s[0]This email account wasn't set up correctly.\w8 I'll open the configuration menu, so you can fix it!\![open,configurationdialog]\e"
-			
-			//Note that this ends with \![open,configurationdialog]. This will open up the preferences menu I described above automatically. More on \! functions in the walkthrough. You can delete the \! tag here if you want to.
-		}
-		else //if there's some other kind of error.
-		{
-			"\0\s[3]I can't connect to the account for some reason...\w8 The error I got is '%(reference[0])'.\e"
-			
-			//reference0 here stores the error message the email server would have given the ghost, hopefully.
-		}
+	if reference0 == "timeout" //If the connection times out.
+ 	{
+ 		"\0\s[0]Oh...\w8 The connection timed out...\e"
 	}
+ 	elseif reference0 == "kick" //If the account blocks the ghost from accessing it. I think gmail may do this at first to try and protect your account from unapproved applications using it. It gives you the option to change the setting in the warning email they send you about it.
+	{
+		"\0\s[0]I can't access your email account for some reason.\w8 Maybe check your email to see if there's a message about this...?\e"
+ 	}
+	elseif reference0 == "defect" //If the information put into the POP menu is wrong.
+ 	{
+ 		"\0\s[0]This email account wasn't set up correctly.\w8 I'll open the configuration menu, so you can fix it!\![open,configurationdialog]\e"
+		
+		//Note that this ends with \![open,configurationdialog]. This will open up the preferences menu I described above automatically. More on \! functions in the walkthrough. You can delete the \! tag here if you want to.
+	}
+ 	else //if there's some other kind of error.
+	{
+		"\0\s[3]I can't connect to the account for some reason...\w8 The error I got is '%(reference[0])'.\e"
+		
+		//reference0 here stores the error message the email server would have given the ghost, hopefully.
+ 	}
 }
 
 
@@ -331,11 +276,7 @@ OnBIFFFailure
  
 OnUpdateBegin
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
- 		"\0\s[0]Alright!\w8 I'll start the update process!\w8\e"
-	}
+	"\0\s[0]Alright!\w8 I'll start the update process!\w8\e"
  }
 
  //---- OnUpdateReady ---------------------------------------------------------
@@ -343,15 +284,10 @@ OnUpdateBegin
  
 OnUpdateReady
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		
-		reference[0] += 1//reference[0] shows 1 less file than there actually is fsr
-		"\0\s[0]I found %(reference[0]) new files!\w8\e"
-		
-		//reference0 here storing the number of new files. You don't have to use it if you don't want to.
-	}
+	reference[0] += 1//reference[0] shows 1 less file than there actually is fsr
+	"\0\s[0]I found %(reference[0]) new files!\w8\e"
+	
+	//reference0 here storing the number of new files. You don't have to use it if you don't want to.
  }
 
 
@@ -360,19 +296,14 @@ OnUpdateReady
 
 OnUpdateComplete
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		
-		if reference0 == "none" //if the ghost had nothing to update with
-		{
-			"\0\s[0]I'm up to date already!\w8 Nice!\e"
-		}
-		else //if the ghost has updated successfully
-		{
-			"\0\s[0]My update finished successfully!\w8 Check out all the new stuff!\e"
-		}
+	if reference0 == "none" //if the ghost had nothing to update with
+ 	{
+ 		"\0\s[0]I'm up to date already!\w8 Nice!\e"
 	}
+ 	else //if the ghost has updated successfully
+	{
+		"\0\s[0]My update finished successfully!\w8 Check out all the new stuff!\e"
+ 	}
 }
 
  //---- OnUpdateFailure -------------------------------------------------------------
@@ -380,21 +311,17 @@ OnUpdateComplete
  
 OnUpdateFailure
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4bad\w8\e"
-	} else {
-		if reference0 == "timeout" //if the connection times out
-		{
-			"\0\s[3]Oh no...\w8 The update connection timed out.\e"
-		}
-		elseif reference0 == "md5 miss" //This is if the files don't match properly to updates.dau, I think. For example, if a file only partially transferred or somehow got corrupted. This may also come up if you didn't set up the directory and updates.dau properly as outlined on the walkthrough page.
-		{
-			"\0\s[3]Uh-oh...\w8 The MD5 hash of the files don't match.\e"
-		}
-		else //for other errors
-		{
-			"\0\s[3]I couldn't finish the update...\w8 The error I got is '%(reference0)'.\e"
-		}	
+	if reference0 == "timeout" //if the connection times out
+ 	{
+ 		"\0\s[3]Oh no...\w8 The update connection timed out.\e"
+	}
+ 	elseif reference0 == "md5 miss" //This is if the files don't match properly to updates.dau, I think. For example, if a file only partially transferred or somehow got corrupted. This may also come up if you didn't set up the directory and updates.dau properly as outlined on the walkthrough page.
+	{
+		"\0\s[3]Uh-oh...\w8 The MD5 hash of the files don't match.\e"
+ 	}
+	else //for other errors
+ 	{
+ 		"\0\s[3]I couldn't finish the update...\w8 The error I got is '%(reference0)'.\e"
 	}
  }
 
@@ -405,27 +332,22 @@ OnUpdateFailure
  
 OnUpdate.OnDownloadBegin
  {
- 	if creepymode{
-		""
-	} else {
-		
-		if "ae_aitalk" _in_ reference0 //this is checking to see what kind of files are being downloaded. In this case, it's looking for files called aitalk in the download queue. If you want to have a specialized bit of dialogue for each type of file, you can expand this with elseifs and by replacing aitalk with whatever file you have in mind. Keep in mind my warning above though.
-		{
-			"\0\s[0]Cool, new dialogue!\e"
-		}
-		elseif "ae_menu" _in_ reference0 
-		{
-			"\0\s[0]Oh, some menu edits!\e"
-		}
-		else //for files not specified above
-		{
-			"\0\s[0]\i50_0\e"
-			"\0\s[0]\i5^_^\e"
-			"\0\s[0]\i5>_<\e"
-			"\0\s[0]\i5>_>\e"
-			"\0\s[0]\i5<_<\e"
-			"\0\s[0]\i5'_>'\e"
-		}
+ 	if "ae_aitalk" _in_ reference0 //this is checking to see what kind of files are being downloaded. In this case, it's looking for files called aitalk in the download queue. If you want to have a specialized bit of dialogue for each type of file, you can expand this with elseifs and by replacing aitalk with whatever file you have in mind. Keep in mind my warning above though.
+ 	{
+ 		"\0\s[0]Cool, new dialogue!\e"
+ 	}
+	elseif "ae_menu" _in_ reference0 
+ 	{
+ 		"\0\s[0]Oh, some menu edits!\e"
+ 	}
+ 	else //for files not specified above
+ 	{
+		"\0\s[0]\i50_0\e"
+		"\0\s[0]\i5^_^\e"
+		"\0\s[0]\i5>_<\e"
+		"\0\s[0]\i5>_>\e"
+		"\0\s[0]\i5<_<\e"
+		"\0\s[0]\i5'_>'\e"
 	}
  }
 
@@ -434,11 +356,7 @@ OnUpdate.OnDownloadBegin
  
 OnUpdate.OnMD5CompareBegin
  {
-	if creepymode{
-		""
-	} else {
-		"...\e"
-	}
+	"...\e"
  }
 
  //---- OnUpdate.OnMD5CompareComplete --------------------------------------------------
@@ -446,11 +364,7 @@ OnUpdate.OnMD5CompareBegin
  
 OnUpdate.OnMD5CompareComplete
  {
-	if creepymode{
-		""
-	} else {
-		"...!\e"
-	}
+	"...!\e"
 }
 
  //---- OnUpdate.OnMD5CompareFailure ---------------------------------------------------
@@ -458,29 +372,20 @@ OnUpdate.OnMD5CompareComplete
  
 OnUpdate.OnMD5CompareFailure
  {
-	if creepymode{
-		""
-	} else {
-		"\0\s[3]Oh no...\w8\e"
-	}
+	"\0\s[3]Oh no...\w8\e"
  }
 
 //balloon update stuff
 OnUpdateOtherComplete{
 
-	if creepymode{
-		""
-	} else {
-
-		if reference3 == "balloon" {
-		
-			if reference0 == "changed" {
-				"\0\s[5]My balloon updated successfully!\w8\e"
-			} else {
-				"\0\s[0]My balloon was already up to date.\w8\e"
-			}
-			
+	if reference3 == "balloon" {
+	
+		if reference0 == "changed" {
+			"\0\s[5]My balloon updated successfully!\w8\e"
+		} else {
+			"\0\s[0]My balloon was already up to date.\w8\e"
 		}
+		
 	}
 
 }
@@ -496,12 +401,7 @@ OnUpdateOtherComplete{
  
 OnHeadlinesenseBegin
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4no\w4\e"
-	} else {
-	
-		"\0\s[0]Ok!\w8 I'll check %(reference0).\e"
-	}
+	"\0\s[0]Ok!\w8 I'll check %(reference0).\e"
  }
 
  //---- OnHeadlinesense.OnFind --------------------------------------------------------
@@ -509,42 +409,38 @@ OnHeadlinesenseBegin
  
 OnHeadlinesense.OnFind
 {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4no\w4\e"
-	} else {
-		
-		//----  What page You're on
-		if reference2 == "First" || reference2 == "First and Last"
-		{
-			//---- First page
-			"\0\b2\s[0]%(reference0):"
-		}
-		elseif reference2 == "Next"
-		{
-			//---- Second page
-			"\0\b2\s[0]%(reference0):"
-		}
-		elseif reference2 == "Last"
-		{
-			//---- Last page
-			"\0\b2\s[0]%(reference0):"
-		}
-		--
-		//---- Headlines
-		"\n\n%reference3\n"
-		--
-		//---- Pages
-		if reference2 == "First" || reference2 == "Next"
-		{
-			//---- Bottom buttons
-			"\![*]\q[Next,] - \![*]\q[Stop,Headline_Cancel]\e"
-		}
-		else
-		{
-			//---- Bottom buttons
-			"\![*]\q[Stop,Headline_Cancel]\e"
-		}
+	//----  What page You're on
+ 	if reference2 == "First" || reference2 == "First and Last"
+	{
+ 		//---- First page
+		"\0\b2\s[0]%(reference0):"
+ 	}
+	elseif reference2 == "Next"
+ 	{
+		//---- Second page
+ 		"\0\b2\s[0]%(reference0):"
 	}
+ 	elseif reference2 == "Last"
+	{
+ 		//---- Last page
+		"\0\b2\s[0]%(reference0):"
+ 	}
+	--
+ 	//---- Headlines
+	"\n\n%reference3\n"
+ 	--
+	//---- Pages
+ 	if reference2 == "First" || reference2 == "Next"
+	{
+ 		//---- Bottom buttons
+		"\![*]\q[Next,] - \![*]\q[Stop,Headline_Cancel]\e"
+ 	}
+	else
+ 	{
+		//---- Bottom buttons
+ 		"\![*]\q[Stop,Headline_Cancel]\e"
+ 	}
+	
 }
 
 
@@ -559,11 +455,7 @@ Select.Headline_Cancel
  
 OnHeadlinesenseComplete
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4no\w4\e"
-	} else {
-		"\0\s[0]No update to headlines. %(reference0).\e"
-	}
+	"\0\s[0]No update to headlines. %(reference0).\e"
 	//reference0 here supposedly always stores the value no update? Again this isn't hugely clear from what I can see. Anyway, this dialogue has never come up for me while using a ghost, so perhaps someone else who runs into it can offer more clarity. For now, you can leave it as is, or write up something else in here if you like.
  }
 
@@ -572,26 +464,20 @@ OnHeadlinesenseComplete
  
 OnHeadlinesenseFailure
   {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4no\w4\e"
-	} else {
-		
-		
-		"\0\s[3]Your RSS feed can't be updated...\w8\n\n[half]" //This sets up an exchange between the two characters. The final part of the exchange continues below in the if statements.
-		--
-		if reference0 == "can't download" //if they can't download the rss feed for some reason
-		{
-			"I can't download it."
-		}
-		elseif reference0 == "can't analyze" //if they can't read the file for some reason
-		{
-			"I can't analyze it..."
-		}
-		else //other errors
-		{
-			"I don't know why I can't update it.\w8 Sorry ;_;"
-		}
-	}
+	"\0\s[3]Your RSS feed can't be updated...\w8\n\n[half]" //This sets up an exchange between the two characters. The final part of the exchange continues below in the if statements.
+ 	--
+	if reference0 == "can't download" //if they can't download the rss feed for some reason
+ 	{
+		"I can't download it."
+ 	}
+	elseif reference0 == "can't analyze" //if they can't read the file for some reason
+ 	{
+		"I can't analyze it..."
+ 	}
+	else //other errors
+ 	{
+		"I don't know why I can't update it.\w8 Sorry ;_;"
+ 	}
 	--
  	"\e" //And here is the final /e, so you don't need to include it in the if statements above. Another one of the very rare cases this occurs.
 }
@@ -607,11 +493,7 @@ OnHeadlinesenseFailure
  
 OnUpdatedataCreating
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"\0\s[0]I'm making the updates2.dau file!\e"
-	}
+	"\0\s[0]I'm making the updates2.dau file!\e"
  }
 
  //---- OnUpdatedataCreated -------------------------------------------------------------
@@ -619,11 +501,7 @@ OnUpdatedataCreating
  
 OnUpdatedataCreated
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"\0\s[6]I've successfully made updates2.dau!\e"
-	}
+	"\0\s[6]I've successfully made updates2.dau!\e"
  }
 
  //---- OnNarCreating ------------------------------------------------------------------
@@ -631,11 +509,7 @@ OnUpdatedataCreated
  
 OnNarCreating
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"\0\s[0]I'm creating the .nar file!\e"
-	}
+	"\0\s[0]I'm creating the .nar file!\e"
  }
 
  //---- OnNarCreated -------------------------------------------------------------------
@@ -643,11 +517,7 @@ OnNarCreating
  
 OnNarCreated
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"\0\s[6]I've successfully created '%(reference0)'!\e"
-	}
+	"\0\s[6]I've successfully created '%(reference0)'!\e"
 	//reference0 here will be the filename of the nar you just created. It should drop the nar in the folder where all your ghosts are listed, ssp\ghost\.
  }
 
@@ -662,12 +532,7 @@ OnNarCreated
  
 OnSNTPBegin
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-	
-		"\0\s[0]I'm gonna check the time.\w8 Let me just connect to %(reference0).\e"
-	}
+	"\0\s[0]I'm gonna check the time.\w8 Let me just connect to %(reference0).\e"
 	//%(reference0) here is the site they'll be using to check your clock. I wouldn't worry too much about what the site is or where it's defined, it should be accurate. Replace the dialogue with what you need, you don't have to use reference0 if you don't want to.
  }
 
@@ -677,24 +542,20 @@ OnSNTPBegin
  
 OnSNTPCompare
  {
- 	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"Retrieved Time: %reference1[1]/%reference1[2]/%reference1[0] %reference1[3]:%reference1[4]:%reference1[5]\w2\n/
-		Your Time: %reference2[1]/%reference2[2]/%reference2[0] %reference2[3]:%reference2[4]:%reference2[5]\w2\n/
-		\n"
-		--
-		if reference3 == 0 //if your clock is already accurate.
-		{
-			"\0\s[0]It looks like your clock is accurate.\w8 Yay!\e" //replace this with whatever message you like.
-		}
-		else //if your clock doesn't match
-		{
-		//you can redo this top line up to the \n\n[half] part, but leave the \q options alone.
-			"\0\s[0]Hm... Your clock doesn't seem to be correct.\w8 Want me to fix it?\n\n[half]/
-			\![*]\q[Fix it,OnSNTPEXECUTE]\n/
-			\![*]\q[Leave it alone,OnSNTPCANCEL]\e"
-		}
+ 	"Retrieved Time: %reference1[1]/%reference1[2]/%reference1[0] %reference1[3]:%reference1[4]:%reference1[5]\w2\n/
+	Your Time: %reference2[1]/%reference2[2]/%reference2[0] %reference2[3]:%reference2[4]:%reference2[5]\w2\n/
+ 	\n"
+	--
+ 	if reference3 == 0 //if your clock is already accurate.
+	{
+ 		"\0\s[0]It looks like your clock is accurate.\w8 Yay!\e" //replace this with whatever message you like.
+	}
+ 	else //if your clock doesn't match
+	{
+	//you can redo this top line up to the \n\n[half] part, but leave the \q options alone.
+ 		"\0\s[0]Hm... Your clock doesn't seem to be correct.\w8 Want me to fix it?\n\n[half]/
+		\![*]\q[Fix it,OnSNTPEXECUTE]\n/
+ 		\![*]\q[Leave it alone,OnSNTPCANCEL]\e"
 	}
  }
 
@@ -719,11 +580,7 @@ OnSNTPCANCEL
  
 OnSNTPFailure
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"\0\s[0]Hmm...\w8 I couldn't change the clock...\s[3] Something went wrong.\e"
-	}
+	"\0\s[0]Hmm...\w8 I couldn't change the clock...\s[3] Something went wrong.\e"
  }
 
 
@@ -744,11 +601,8 @@ OnDisplayChange
  
 OnScreenSaverStart
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"\0\s[0]Oh!\w8 Your screensaver is starting!\e"
-	}//Replace with what you want.
+	"\0\s[0]Oh!\w8 Your screensaver is starting!\e"
+	//Replace with what you want.
  }
 
  //---- OnScreenSaverEnd -------------------------------------------------------
@@ -756,11 +610,8 @@ OnScreenSaverStart
  
 OnScreenSaverEnd
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"\0\s[0]Your screensaver is gone.\w8 Welcome back!\e"
-	}//Replace with what you want.
+	"\0\s[0]Your screensaver is gone.\w8 Welcome back!\e"
+	//Replace with what you want.
  }
 
 
@@ -769,11 +620,7 @@ OnScreenSaverEnd
  
 OnApplicationBoot
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"\0\s[0]%(reference0) just started!\e"
-	}
+	"\0\s[0]%(reference0) just started!\e"
  }
 
  //---- OnApplicationClose --------------------------------------------------------------
@@ -781,11 +628,7 @@ OnApplicationBoot
  
 OnApplicationClose
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"\0\s[0]%(reference0) has closed!\e"
-	}
+	"\0\s[0]%(reference0) has closed!\e"
  }
 
  //---- OnApplicationFileOpen ----------------------------------------------------------
@@ -793,11 +636,7 @@ OnApplicationClose
  
 OnApplicationFileOpen
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		"\0\s[0]Opening %(reference1)!\e"
-	}
+	"\0\s[0]Opening %(reference1)!\e"
  }
 
 
@@ -808,11 +647,7 @@ OnApplicationFileOpen
  
 OnBatteryLow
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4low\w4\e"
-	} else {
-		"\0\s[0]%(username), your laptop's battery is low... \w8There is %(reference0) power left.\w8\s[3] You should probably plug it in ^_^;\e"
-	}
+	"\0\s[0]%(username), your laptop's battery is low... \w8There is %(reference0) power left.\w8\s[3] You should probably plug it in ^_^;\e"
 	//reference0 here is the amount of battery power. Replace as you like.
  }
  
@@ -821,11 +656,7 @@ OnBatteryLow
  
 OnBatteryCritical
 {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4critical\w4\e"
-	} else {
-		"\0\s[3]Your laptop's battery is critically low!!\w8 You \f[bold,true]really\f[bold,false] should plug it in.\e"
-	}
+	"\0\s[3]Your laptop's battery is critically low!!\w8 You \f[bold,true]really\f[bold,false] should plug it in.\e"
 }
  
 //--OnBatteryNotify--------------------------------------------------------------------
@@ -852,11 +683,7 @@ OnBatteryNotify
  
 OnSysResourceLow
  {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4low\w4\e"
-	} else {
-		"\0\s[3]Your system resources are low...\w8 Maybe close some stuff, %(username)?\e"
-	}
+	"\0\s[3]Your system resources are low...\w8 Maybe close some stuff, %(username)?\e"
  }
 
 
@@ -865,21 +692,16 @@ OnSysResourceLow
  
 OnShellScaling
 {
-	if creepymode{
-		"\0\s[666].\w4.\w4.\w4\e"
-	} else {
-		
-		if reference0 >= 133 //this number is the percentage that you're scaling the ghost up to. In this case, it's 150%.
-		{
-			"\0\s[0]Oh, you made me bigger!\w8 Hello!\e"
-		}
-		elseif reference0 == 100 //this is 100%
-		{
-			"\0\s[1]Back to normal size!\e"
-		}
-		else//if reference0 == 50 //this is 50%. You can add any percentage that's listed under shell scaling if you want using more elseifs.
-		{
-			"\0\s[0]You made me smaller!\w8 I'm so tiny now, LOL\e"
-		}
+	if reference0 >= 133 //this number is the percentage that you're scaling the ghost up to. In this case, it's 150%.
+	{
+		"\0\s[0]Oh, you made me bigger!\w8 Hello!\e"
+	}
+	elseif reference0 == 100 //this is 100%
+	{
+		"\0\s[1]Back to normal size!\e"
+	}
+	else//if reference0 == 50 //this is 50%. You can add any percentage that's listed under shell scaling if you want using more elseifs.
+	{
+		"\0\s[0]You made me smaller!\w8 I'm so tiny now, LOL\e"
 	}
 }

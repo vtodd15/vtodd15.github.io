@@ -118,13 +118,7 @@ OnMouseDoubleClick
 	
  	if reference3 == 0 //if the character is 0, aka your main character
 	{
-		if creepymode{
-		
-			"\s[666]you can't have that anymore."
-		
-		} else {
-			MouseDoubleClickSakura
-		}
+		MouseDoubleClickSakura
  	}
 	else
  	{
@@ -156,9 +150,8 @@ MouseDoubleClickSakura
 		"\0\s[0]Oh!\w8 You booped me! :P\w8\e"
 		"\0\s[0]Hey, careful where you poke, please.\w8\e"
 		//Replace this dialogue with appropriate dialogue as you need. You can add more or cut it down if you want, even down to nothing if you want no response from your ghost at all when those areas are double clicked.
- 	} elseif reference4 == "Hand"{
-		"\0\s[0]High five!\w8\e"
-	} else
+ 	}
+	else
  	{
 		//Otherwise, if the user doubleclicks somewhere else on the character, they will open their menu as detailed in menu.dic.
  		OpenSakuraMenu

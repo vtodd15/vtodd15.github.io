@@ -228,32 +228,9 @@ On_callghostrootbutton.caption
  
 On_quitbutton.caption
  {
-	if creepymode {
-		"Run away"
-	} else {
-		"Quit"
-	}
+	"Quit"
 }
 
-
-//hide balloon menu
-On_balloonrootbutton.visible{
-	"0"
-}
-
-//hide history menu
-On_historyrootbutton.visible{
-	"0"
-}
-
-//hide update menu on creepymode
-On_updatebutton.visible{
-	if creepymode{
-		"0"
-	} else {
-		"1"
-	}
-}
 
 //----------------------------------Stop!------------------------------------
 

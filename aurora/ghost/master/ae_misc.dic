@@ -5,7 +5,7 @@ OnMiscMenu{
 	
 	--
 		
-	"\![*]\q[Stats,OnStatDisplay]\n/
+	"\![*]\q[Stats,statdisplay]\n/
 	\![*]\q[Mameshiba,mameshibatalk]\n/
 	\![*]\q[8ball,On8balltime,2]\n/
 	\![*]\q[Weather,OnCheckWeather]\n\n[half]"
@@ -14,64 +14,49 @@ OnMiscMenu{
 
 }
 
+//god i cnat stand the english language
+Select.statdisplay{
 
-OnStatDisplay{
-	_s = ""
-	--
-	if pomosdone != 1; _s ="s"
-	"\0\s[0]\b2\_qStatistics\n\n[half]You've done \f[bold,true]%(pomosdone)\f[bold,false] work session%(_s).\n\n[half]"
-	--
-	if pomosdone >= achievementAP[0]{
-		"\f[bold,true]\q[Claim Achievment AP,OnClaimAP,0]\f[bold,false]\n\n[half]"
+	if pomosdone == 1 {
+	"\0\s[0]\b2\_qStatistics\n\n[half]You've done \f[bold,true]%(pomosdone)\f[bold,false] work session.\n\n[half]"
+	} 
+	else {
+	"\0\s[0]\b2\_qStatistics\n\n[half]You've done \f[bold,true]%(pomosdone)\f[bold,false] work sessions.\n\n[half]"
 	}
 	
 	--
-	if auroraboop == 1; _s=""
+	if auroraboop == 1{
 	
-	"You've poked Aurora \f[bold,true]%(auroraboop)\f[bold,false] time%(_s)\n\n[half]"
-	"You've booped Aurora \f[bold,true]%(auroraboop)\f[bold,false] time%(_s)\n\n[half]"
-	--
-	if auroraboop >= achievementAP[1]{
-		"\f[bold,true]\q[Claim Achievment AP,OnClaimAP,1]\f[bold,false]\n\n[half]"
-	}
-	
-	--
-	
-	if aurorapet != 1; _s="s"
-	"You've pet Aurora \f[bold,true]%(aurorapet)\f[bold,false] time%(_s)\n\n[half]"
-	--
-	if aurorapet >= achievementAP[2]{
-		"\f[bold,true]\q[Claim Achievment AP,OnClaimAP,2]\f[bold,false]\n\n[half]"
+		"You've poked Aurora \f[bold,true]%(auroraboop)\f[bold,false] time\n\n[half]"
+		"You've booped Aurora \f[bold,true]%(auroraboop)\f[bold,false] time\n\n[half]"
+	} 
+	else {
+		"You've poked Aurora \f[bold,true]%(auroraboop)\f[bold,false] times\n\n[half]"
+		"You've booped Aurora \f[bold,true]%(auroraboop)\f[bold,false] times\n\n[half]"
 	}
 
 	--
-	if AP == 1; _s=""
-	"You have \f[bold,true]%(AP)\f[bold,false] AP (Aurora Point%(_s))\n\n[half]"
+	
+	if aurorapet == 1 {
+	"You've pet Aurora \f[bold,true]%(aurorapet)\f[bold,false] time\n\n[half]"
+	} 
+	else {
+	"You've pet Aurora \f[bold,true]%(aurorapet)\f[bold,false] times\n\n[half]"
+	}
+
+	--
+	/*if AP == 1 {
+	"You have \f[bold,true]1\f[bold,false] AP (Aurora Point)\n\n[half]"
+	}
+	else {
+	"You have \f[bold,true]%(AP)\f[bold,false] AP (Aurora Points)\n\n[half]"
+	}*/
 	--
 	"\0\s[0]Back to...\n\n[half]"
 	--
 	"\![*]\q[Misc menu,OnMiscMenu]\n/
 	\![*]\q[Main menu,OnBACKTOMENU]\e"
 
-}
-
-OnClaimAP {
-
-	
-	if reference0 == 0 {
-		AP+=10
-		achievementAP[reference0] = achievementAP[reference0] + 4 
-		//work sessions increment by 4
-	
-	} else {
-		AP+=5
-		achievementAP[reference0] = achievementAP[reference0] + 10
-		//boop/pet increase by 10
-	
-	}
-	
-	OnStatDisplay
-	
 }
 
 Select.mameshibatalk{
@@ -154,82 +139,6 @@ OnInput8ball{
 	
 }
 
-//note for future vita: i am uploading the regex to my personal site to pull from for updates since weather dot corn keeps breaking stuff
-//since i cant put comments in the txt file really im putting them here
-//order of the regex 
-//curr weather -> 10 day forecast -> hourly 
-//moon has stayed stable 
-
-// curr weather
-// _regtemp = '' 0
-// _regdegree = '' 1
-// _regfeels = '' 2 
-// _reghumidity = '' 3 
-// _regwind = '' 4
-// _regstate = '' 5 
-// _regloc = '' 6
-// _regpollen = '' 7
-
-// 10 day forecast
-// _regdate='' 8 
-// _regdesc='' 9
-// _reghigh='' 10
-// _reglow='' 11
-// _regprecip='' 12
-// _regwind='' 13
-// _reghumidity='' 14
-// _regdaynight='' 15
-
-// hourly forecast
-// _reghour='' 16
-// _regdesc='' 17
-// _regtemp='' 18
-// _regfeels='' 19
-// _regprecip='' 20
-// _regwind='' 21
-// _reghumidity='' 22
-
-
-
-OnDownloadRegex {
-
-	"\0\s[0]Updating weather code...\w4\![execute,http-get,https://vtodd15.github.io/weatherregex.txt,--async=OnUpdateRegex,--timeout=200]"
-
-}
-
-OnUpdateRegex {
-
-	//clean out old regex
-	regex = IARRAY
-	_buff = ""
-	_file = "var\\weatherregex.txt"
-	FCHARSET(1)
-	_i = 0
-	
-
-	if FOPEN(_file,'r') {
-	
-		for _buff = FREAD(_file); _buff != -1; _buff = FREAD(_file) {
-		
-			regex[_i] = _buff
-			_i++
-		
-		}
-	
-	}
-	
-	FCLOSE(_file);
-	
-	"Done!\x"
-	
-	--
-	
-	OnCheckWeather
-	
-	
-}
-
-
 //Weather Checking -------------------------------------------------------
 
 //functions for scraping weather.com for weather data.
@@ -249,28 +158,19 @@ OnCheckWeather
 	
 	if (locationcode == ""){
 	
-		"\![*]\q[Set Location,OnWeatherLocation]\n/
-		\![*]\q[Check Moon Phase,OnDownloadMoonPhase]\n\n[half]"
-		locationset=0
+	"\![*]\q[Set Location,OnWeatherLocation]\n/
+	\![*]\q[Check Moon Phase,OnDownloadMoonPhase]\n\n[half]"
+	
 	
 	} else {
-		locationset=1
-		"\![*]\q[Set Location,OnWeatherLocation]\n/
-		\![*]\q[Check Current Weather,OnDownloadCurWeather]\n/
-		\![*]\q[Check 10 Day Forecast,OnDownloadForecast]\n/
-		\![*]\q[Check Hourly Forecast,OnDownloadHourly]\n/
-		\![*]\q[Check Moon Phase,OnDownloadMoonPhase]\n"
-		--
-		if unit==""{
-			"\![*]\q[Switch to Metric Units,switchunits]\n\n[half]"
-		} else 
-		{
-			"\![*]\q[Switch to American Units,switchunits]\n\n[half]"
-		}
+	
+	"\![*]\q[Set Location,OnWeatherLocation]\n/
+	\![*]\q[Check Current Weather,OnDownloadCurWeather]\n/
+	\![*]\q[Check 10 Day Forecast,OnDownloadForecast]\n/
+	\![*]\q[Check Hourly Forecast,OnDownloadHourly]\n/
+	\![*]\q[Check Moon Phase,OnDownloadMoonPhase]\n\n[half]"
+	
 	}
-	--
-	"If the forecast isn't working, you might need to:\n/
-	\![*]\q[Update the weather code,OnDownloadRegex]\n\n[half]"
 	--
 	"Nevermind, back to...\n\n[half]"
 	--
@@ -278,61 +178,40 @@ OnCheckWeather
 	\![*]\q[Main menu,OnBACKTOMENU]\e"
 
 }
-
-Select.switchunits{
-
-	if unit == "" {
-		unit = "en-CA/"
-	} else 
-	{
-		unit=""
-	}
-	
-	locationset=0 //not actually but im using this to get back to the weather menu
-	"\![execute,http-get,https://weather.com/%(unit)weather/today/l/%(locationcode),--async=OnCurWeatherFound,--file=weather.html,--nodescript,--timeout=200]"
-
-}
 	
 OnWeatherLocation
 {
 
-	locationset=0
-	"\0\s[8]First, do you want to use american or metric units?\n\n[half]"
+	"\0\s[8]First, I need to know where you are. Are you in the USA or not?\n\n"
 
 	--
-	"\![*]\q[American,OnAmericanUnits]\n/
-	\![*]\q[Metric,OnMetricUnits]\n\e"
+	"\![*]\q[USA,OnUSALoc]\n/
+	\![*]\q[Outside the USA,OnOtherLoc]\n\e"
 
 
 }
 
-OnAmericanUnits{
+OnUSALoc{
 
-	unit=""
-
-	"\0\s[5]Alright. Please go to weather.com, search your location, and give me the URL. \![open,inputbox,OnLocCode,-1]"
+	"\0\s[5]Alright! Just let me know your zipcode!\![open,inputbox,OnLocCode,-1]"
 }
 
-OnMetricUnits{
+OnOtherLoc{
 
-	unit="en-CA/"
-
-	"\0\s[5]Alright. Please go to weather.com, search your location, and give me the URL. \![open,inputbox,OnLocCode,-1]"
+	"\0\s[8]This gets a little more complicated. Please go to weather.com, search your city, and give me the long series of letters and numbers at the end of the URL.\![open,inputbox,OnLocCode,-1]"
 
 }
 
 
 OnLocCode
 {
-	_temp = SPLIT(reference0,'/')
-
-	locationcode = _temp[ARRAYSIZE(_temp)-1]
-	"\![execute,http-get,https://weather.com/%(unit)weather/today/l/%(locationcode),--async=OnCurWeatherFound,--file=weather.html,--nodescript,--timeout=200]"
+locationcode = reference0
+OnDownloadCurWeather
 }
 
 OnDownloadCurWeather
 {
-	"\0\s[0]Downloading weather... \![execute,http-get,https://weather.com/%(unit)weather/today/l/%(locationcode),--async=OnCurWeatherFound,--file=weather.html,--timeout=200]"
+	"\0\s[0]Downloading weather... \![execute,http-get,https://weather.com/weather/today/l/%(locationcode),--async=OnCurWeatherFound,--file=weather.html,--timeout=200]"
 
 }
 
@@ -342,14 +221,14 @@ OnCurWeatherFound
 	//initialize variables 
 	_file = "var\\weather.html"
 	_buff=""
-	_regtemp = regex[0]
-	_regdegree = regex[1]
-	_regfeels = regex[2]
-	_reghumidity = regex[3]
-	_regwind = regex[4]
-	_regstate = regex[5]
-	_regloc = regex[6]
-	_regpollen = regex[7]
+	_regtemp = ''
+	_regdegree = ''
+	_regfeels = ''
+	_reghumidity = ''
+	_regwind = ''
+	_regstate = ''
+	_regloc = ''
+	_regpollen = ''
 	FCHARSET(1)
 	//array to hold current weather data
 	//[temp, degrees, feels like temp, humidity, wind, state (cloudy, rainy, etc), pollen alert (yes/no)]
@@ -358,6 +237,31 @@ OnCurWeatherFound
 	--
 	
 	if FOPEN(_file,'r') {
+	
+		_buff = FREAD(_file) //get the first line of the HTML to check what type of page we got
+		temp = _buff
+		
+		if RE_SEARCH(_buff, '<html dir="ltr" lang="en-US"><head>') { //reg expressions for chrome formatted page
+			_regtemp = 'CurrentConditions--tempValue--[\d|\w|_|-]*">(-?\d*)°</span><div'
+			_regdegree = '(°C|°F)'
+			_regfeels = 'feelsLikeTempValue--[\d|\w|_|-]*">(-?\d*)°</span><span data'
+			_reghumidity = 'estid="PercentageValue">(\d*)%</span></div>'
+			_regwind = '44z"></path></svg>([\w|\s|\d]*)</span></div></div>'
+			_regstate = 'phraseValue--[\d|\w|_|-]*">([\w|\s]*)</div></div>'
+			_regloc = 'Conditions--location--[\d|\w|_|-]*">(.*) Weather</h1><div class='
+			_regpollen = 'iesListItem--description--[\d|\w|_|-]*">([\w|\s]*) pollen is very high in your area</p></'
+		}
+		else { 
+		//reg expressions for firefox formatted page 
+			_regtemp = '<div class="today_nowcard-temp"><span class="">(-?\d*)<sup>'
+			_regdegree = '(°C|°F)'
+			_regfeels = '<span class="btn-text">Feels Like<!----> </span><span class="deg-feels" className="deg-feels">(-?\d*)<sup>'
+			_reghumidity = '</tr><tr><th>Humidity</th><td><span class=""><span>(\d*)<span class="Percentage__percentSymbol__2Q_AR">%'
+			_regwind = '<tr><th>Wind</th><td><span class="">([\w|\s|\d]*)</span></td></tr><tr><th>'
+			_regstate = '<div class="today_nowcard-phrase">([\w|\s]*)'
+			_regloc = 'className="h4 today_nowcard-location">(.*)<span class="icon icon-font iconset-social icon-share-circle" className="icon icon-font iconset-social icon-share-circle"></span>'
+			_regpollen = ' title="Local Pollen Alert"'
+		}
 
 		for _buff = FREAD(_file); _buff != -1; _buff = FREAD(_file) {
 			
@@ -421,8 +325,6 @@ OnCurWeatherFound
 	
 	FCLOSE(_file);
 	
-	
-	
 	if (intalkconfig) {
 	
 		intalkconfig = 0
@@ -431,15 +333,6 @@ OnCurWeatherFound
 		"\e"
 	
 	}
-	--
-	if !locationset{
-		
-		locationset = 1
-		OnCheckWeather
-		--
-		"\e"
-	
-	}	
 	--
 	if weatherquiet {
 		weatherquiet = 0
@@ -465,12 +358,13 @@ OnCurWeatherFound
 
 OnDownloadForecast{
 
-	"\0\s[0]Downloading forecast... \![execute,http-get,https://weather.com/%(unit)weather/tenday/l/%(locationcode),--async=OnForecastFound,--file=forecast.html,--timeout=200]"
+	"\0\s[0]Downloading forecast... \![execute,http-get,https://weather.com/weather/tenday/l/%(locationcode),--async=OnForecastFound,--file=forecast.html,--timeout=200]"
 
 }
 
 
-//state checker: chrome after noon? (1st two normal, then skip over every other one) chrome morning (skip every other one)
+//TODO: fix for chrome formatting having 2x the humidity rankings
+//state checker: firefox (run normally) chrome after noon? (1st two normal, then skip over every other one) chrome morning (skip every other one)
 OnForecastFound
 {
 	
@@ -479,14 +373,13 @@ OnForecastFound
 	//line being read
 	_buff=""
 	//regular expressions to extract data
-	_regdate=regex[8]
-	_regdesc=regex[9]
-	_reghigh=regex[10]
-	_reglow=regex[11]
-	_regprecip=regex[12]
-	_regwind=regex[13]
-	_reghumidity=regex[14]
-	_regdaynight=regex[15]
+	_regdate=''
+	_regdesc=''
+	_reghigh=''
+	_reglow=''
+	_regprecip=''
+	_regwind=''
+	_reghumidity=''
 	//using UTF-8 charset
 	FCHARSET(1)
 	
@@ -496,7 +389,6 @@ OnForecastFound
 	
 	//jank
 	_state = ""
-	_daynight = ""
 	
 	//2D array for forecast data
 	//15 days? each day has (date, description, high,low, precip %, wind, humidity)
@@ -506,6 +398,31 @@ OnForecastFound
 	--
 	
 	if FOPEN(_file,'r') {
+	
+	
+		_buff = FREAD(_file) //get the first line of the HTML to check what type of page we got
+		temp = _buff
+		
+		if RE_SEARCH(_buff, '<html dir="ltr" lang="en-US"><head>') { //reg expressions for chrome formatted page
+			_regdate='-daypartName--[\d|\w|_|-]*">([\w|\s]*)</h[\d]><div '
+			_regdesc='extendedData--[\d|\w|_|-]*">([\w|\s]*)</span></div>'
+			_reghigh='Summary-DetailsSummary--highTempValue--[\d|\w|_|-]*">(--|(-?\d*)).</span>'
+			_reglow='Summary--lowTempValue--[\d|\w|_|-]*">(-?\d*)°</span'
+			_regprecip='<span data-testid="PercentageValue">(\d*)%</span></div>'
+			_regwind='[\d|\w|_|-]* undefined">([\w|\s]*)<!-- -->([\w|\s]*)</span></div>'
+			_reghumidity='Details-DetailsTable-DetailsTable--value--[\d|\w|_|-]*">(\d*)%</span></div></li><li data-testid="uvIndexSection"'
+		}
+		else { 
+			//reg expressions for firefox formatted page 
+			_regdate='</div><span class="day-detail clearfix">([\w|\s]*)</span></div>'
+			_regdesc='data-track-string="ls_24_hour_ls_24_hour_toggle" className="description"><span>([\w|\s]*)</span></td>'
+			_reghigh='className="temp"><div><span class="">(--|(-?\d*))<sup>.</sup></span>'
+			_reglow='<span class="slash" className="slash"></span><span class="">(-?\d*)<sup>.</sup></span></div>'
+			_regprecip='icon-drop-1"></span><span class=""><span>(\d*)<span class="Percentage__percentSymbol__2Q_AR">.</span>'
+			_regwind='className="wind"><span class="">([\w|\s]*)</span>'
+			_reghumidity='className="humidity"><span class=""><span>(\d*)<span class="Percentage__percentSymbol__2Q_AR">'
+			_state = "firefox"
+		}
 		
 		for _buff = FREAD(_file); _buff != -1; _buff = FREAD(_file) {
 			
@@ -638,15 +555,15 @@ OnForecastFound
 					
 					if RE_SEARCH(_temp[i], _reghumidity) {
 						
-						if _state == "" { //state has not been set yet so we are in one of the weird chrome ones
+						if _state == "firefox"  { //ff format is nice and doesnt have anything special 
 						
-							if RE_GREP(_buff, _regdaynight){
-								_daynight = RE_GETSTR[0]
-							}
+							_singleday = _singleday + RE_GETSTR[1] + ","
 						
-							//_singleday = _singleday + RE_GETSTR[1] + "," //take the first humidity we get to normally 
+						} elseif _state == "" { //state has not been set yet so we are in one of the weird chrome ones
+						
+							_singleday = _singleday + RE_GETSTR[1] + "," //take the first humidity we get to normally 
 							
-							if "Night" _in_ _daynight { 
+							if forecastarray[2][0] == "-" { 
 							//indicates that first humidity was in the night stage of today's forecast, so we don't want to skip the next humidity
 								_state = "chrome"								
 							}
@@ -733,10 +650,11 @@ OnForecastFound
 
 }
 
-//Hourly forecast
+//
+
 OnDownloadHourly{
 
-	"\0\s[0]Downloading hourly forecast... \![execute,http-get,https://weather.com/%(unit)weather/hourbyhour/l/%(locationcode),--async=OnHourlyFound,--file=hourly.html,--timeout=200]"
+	"\0\s[0]Downloading hourly forecast... \![execute,http-get,https://weather.com/weather/hourbyhour/l/%(locationcode),--async=OnHourlyFound,--file=hourly.html,--timeout=200]"
 
 }
 
@@ -749,13 +667,13 @@ OnHourlyFound
 	//line being read
 	_buff=""
 	//regular expressions to extract data
-	_reghour=regex[16]
-	_regdesc=regex[17]
-	_regtemp=regex[18]
-	_regfeels=regex[19]
-	_regprecip=regex[20]
-	_regwind=regex[21]
-	_reghumidity=regex[22]
+	_reghour=''
+	_regdesc=''
+	_regtemp=''
+	_regfeels=''
+	_regprecip=''
+	_regwind=''
+	_reghumidity=''
 	//using UTF-8 charset
 	FCHARSET(1)
 	
@@ -772,7 +690,31 @@ OnHourlyFound
 	--
 	
 	if FOPEN(_file,'r') {
+	
+		_buff = FREAD(_file) //get the first line of the HTML to check what type of page we got
+		temp = _buff
 		
+		if RE_SEARCH(_buff, '<html dir="ltr" lang="en-US"><head>') { //reg expressions for chrome formatted page
+			_reghour='mmary-DetailsSummary--daypartName--[\d|\w|_|-]*">(\d* [p|a]m)</h[\d]><div data-te'
+			_regdesc='y--extendedData--[\d|\w|_|-]*">([\w|\s]*)</span></div>'
+			_regtemp='tailsSummary--tempValue--[\d|\w|_|-]*">(-?\d*)°</span></div><div data-testid="wxIcon'
+			_regfeels='Feels Like</span><span data-testid="TemperatureValue" class="_-_-node_modules-@[-|\w]*">(-?\d*)°</span></div><'
+			_regprecip='</svg><span data-testid="PercentageValue">(\d*)%</span></div><div data-testid="'
+			_regwind='Wrapper--[\d|\w|_|-]* undefined">([\w|\s]*)<!-- -->([\w|\s]*)</span></div></'
+			_reghumidity='-DetailsTable-DetailsTable--value--[\d|\w|_|-]*">(\d*)%</span></div></li><li data-testid="uvIndexSection"'
+		}
+		else { 
+			//reg expressions for firefox formatted page 
+			_reghour='<span class="dsx-date">(\d*:\d* [p|a]m)'
+			_regdesc='className="hidden-cell-sm description"><span>([\w|\s]*)</span>'
+			_regtemp='className="temp"><span class="">(-?\d*)<sup>'
+			_regfeels='className="feels"><span class="">(-?\d*)<sup>'
+			_regprecip='iconset-weather-data icon-drop-1"></span><span class=""><span>(\d*)<span class="Percentage__percentSymbol'
+			_regwind='className="wind"><span class="">([\w|\s]*)</span>'
+			_reghumidity='className="humidity"><span class=""><span>(\d*)<span class="Percentage__percentSymbol__2Q_AR">'
+		}
+	
+	
 		for _buff = FREAD(_file); _buff != -1; _buff = FREAD(_file) {
 			
 
@@ -1019,4 +961,55 @@ OnMoonFound{
 	\![*]\q[Misc menu,OnMiscMenu]\n/
 	\![*]\q[Main menu,OnBACKTOMENU]\x\e"
 
+}
+
+OnDownloadTest{
+
+	"\0\s[0]Downloading moon phase... \![execute,http-get,https://www.timeanddate.com/sun/@z-us-15642,--async=OnDownloadFound,--file=test.html,--timeout=200]"
+}
+
+OnDownloadFound{
+
+
+	//file to be read
+	_file = "var\\test.html"
+	//line being read
+	_buff=""
+	//regular expressions to extract data
+	_regphase='four>Sunset Today: </span><span class=three>(\d*:\d* [p|a]m)</span>'
+	_found = 0;
+	//using UTF-8 charset
+	FCHARSET(1)
+	
+	//string for holding phase
+	_phase = ""
+	
+
+	
+	--
+	
+	if FOPEN(_file,'r') {
+		for _buff = FREAD(_file); _buff != -1 && !_found; _buff = FREAD(_file) {
+			
+
+			if RE_SEARCH ( _buff, _regphase ) {
+				
+				_phase = RE_GETSTR[1]
+				_found = 1; //break loop since we dont need to continue parsing
+				
+			} 
+		}
+	}
+	--
+	
+	FCLOSE(_file);
+	
+	"\0\s[8]The moon is currently in its %(_phase) phase."
+	
+	--
+	"\n\n[half]Back to...\n\n[half]"
+	--
+	"\![*]\q[Weather menu,OnCheckWeather]\n/
+	\![*]\q[Misc menu,OnMiscMenu]\n/
+	\![*]\q[Main menu,OnBACKTOMENU]\x\e"
 }

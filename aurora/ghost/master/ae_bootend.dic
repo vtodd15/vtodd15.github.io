@@ -46,8 +46,7 @@ OnFirstBoot
 	aurorapet = 0
 	auroraboop = 0
 	pomosdone = 0
-	AP = 0
-	friendship = 0
+	AP = 0;
 	
 	//sleep reminder stuff
 	sleeptimereminder = 0
@@ -89,21 +88,6 @@ OnFirstBoot
 	spookystuff = "OFF"
 	intalkconfig = 0
 	weatherquiet = 0
-	nightmode = "OFF"
-	
-	//reset creepymode
-	creepymode = 0
-	
-	//cap max ap recieved over time in a session
-	timeAPmax = 71
-	timeAP = 0
-	
-	//achievements
-	//work sessions,boop,pet
-	achievementAP = (1,1,1)
-	
-	//array for item stuff
-	purchasedItems=IARRAY
 	
  	lastTalk = "" //This is part of how chained conversations work (see aitalk.dic).
 	passmin = 0 
@@ -287,24 +271,11 @@ OnBoot
 	inFirstBoot = 0
 	
 	//update stuff that i can delete later once everyone has a positive ap count
-	if AP == NULL {
+	if AP == "" {
 		
 		AP = 0
 	
 	}
-	if purchasedItems == NULL {
-		purchasedItems = IARRAY
-	}
-	if nightmode == NULL {
-		nightmode = "OFF";
-	}
-	if achievementAP == NULL {
-		achievementAP = (1,1,1)
-	}
-	if friendship == NULL {
-		friendship = 0;
-	}
-	
 	//variables for adjusting output of weather function
 	intalkconfig = 0
 	weatherquiet = 0
@@ -319,12 +290,6 @@ OnBoot
 	pomocustomtimer = 0
 	pomoBreakOn = 0
 	
-	//reset creepymode
-	creepymode = 0
-	
-	//cap max ap recieved over time in a session
-	timeAPmax = 71
-	timeAP = 0
 	
 	lastTalk = "" //These values you may recognize from OnFirstBoot up there. Just pay them no mind.
 	passmin = 0
@@ -337,7 +302,7 @@ OnBoot
 	dayslot = GetDaySlot
 	timeslot = GetTimeSlot //You should remember these functions from above! They determine the date and time. Basically, it's using the functions GetDaySlot and GetTimeSlot to determine the two values for dayslot/timeslot that it will use in the following if statements. Those who read the coding page of the walkthrough and are interested in using your own functions, pay very close attention to this and study how it works!
 	
-	if dayslot == userbirthday && dayslot != "10month 31day" //Now we're getting into the if statements. These check what the date is and, if it's a certain value, displays special dialogue. Here, the if statement is looking at the dayslot value (which we just defined) and evaluating it using the == operator to see if it equals another value, in this case the value "userbirthday". Basically this is checking to see if it's the user's birthday.
+	if dayslot == userbirthday //Now we're getting into the if statements. These check what the date is and, if it's a certain value, displays special dialogue. Here, the if statement is looking at the dayslot value (which we just defined) and evaluating it using the == operator to see if it equals another value, in this case the value "userbirthday". Basically this is checking to see if it's the user's birthday.
 	
 	//*********************Advanced User Info*******************************
 	//If you're checking a value in an if statement, remember! 
@@ -401,27 +366,11 @@ OnBoot
 	}
 	elseif dayslot == "10month 31day"
 	{
-		if RAND(100) < 50  || spookystuff = "OFF" { //never activate creepymode if spooky switch is off
+		"\0\s[0]Today is October 31st.\w8 It's Halloween!\w8 I hope you get lots of candy today!\e"
 		
-			if dayslot == userbirthday {
-			
-				"\0\s[0]It's %(bornmonthprint) %(borndayprint). \w8\s[6]Happy birthday, %(username)!!!\w8 I hope you get lots of presents and cake today! ^_^ \e" 
-				
-			
-			} else {
-				"\0\s[0]Today is October 31st.\w8 It's Halloween!\w8 I hope you get lots of candy today!\e"
-				
-				"\0\s[0]Today is October 31st.\w8 It's Halloween!\w8 Watch out for stray skeletons.\e"
-				
-				"\0\s[0]Today is October 31st.\w8 It's Halloween!\w8 .\w4.\w4.\w4Is that someone's hand on your shoulder?\x\c\s[1] Just kidding～★\e"
-			}
-		} else {
+		"\0\s[0]Today is October 31st.\w8 It's Halloween!\w8 Watch out for stray skeletons.\e"
 		
-			creepymode = 1
-			"\0\s[666]hey\w8\w8\n\nnice to see you\n\w8\w8\n          :)\e"
-		
-		
-		}
+		"\0\s[0]Today is October 31st.\w8 It's Halloween!\w8 .\w4.\w4.\w4Is that someone's hand on your shoulder?\x\c\s[1] Just kidding～★\e"
 
 	}
 	elseif dayslot == "12month 25day"
@@ -513,35 +462,19 @@ normalboottalk
 		}
 		elseif timeslot == "latenight"
 		{
+ 		"\0\s[0]Mmm...\w8 It's getting kind of late, don't ya think?\w8\e"
 		
  		"\0\s[0]Oh, it's night time already?\w8 The day just flew by!\w8\e"
-		if nightmode == "OFF" {
-				"\0\s[0]Hello, %(username).\w8 Are you getting ready for bed?\w8\e"
-				"\0\s[0]Mmm...\w8 It's getting kind of late, don't ya think?\w8\e"
-		}
-
+		
+ 		"\0\s[0]Hello, %(username).\w8 Are you getting ready for bed?\w8\e"
 		}
 		else //the last timeslot we haven't done is midnight, which is what's under here.
 		{
-			if RAND(100) < 5 && spookystuff = "ON"{
-			
-				"\0\s[666]it's late\w8\w8\w8\n\nyou should be asleep\w8\e"
-			
-			} else {
-
-			if nightmode == "OFF"{
-			
-				"\0\s[0]Mmm...\w8 It's real late.\w8\s[3] Shouldn't you be asleep? 0_0\w8\e"
+		"\0\s[0]Mmm...\w8 It's real late.\w8\s[3] Shouldn't you be asleep? 0_0\w8\e"
 		
-				"\0\s[0]Oh wow, it's like the middle of the night!\w8\s[3] Don't stay up for long, ok?\w8\e"
-			
-			}
+ 		"\0\s[0]Oh wow, it's like the middle of the night!\w8\s[3] Don't stay up for long, ok?\w8\e"
 		
-				"\0\s[0]It's reaaaaaally late at night...\w8\s[8] Or I guess really early in the morning, huh.\w8\e"
-			
-			}
-		
-
+ 		"\0\s[0]It's reaaaaaally late at night...\w8\s[8] Or I guess really early in the morning, huh.\w8\e"
 		}
 	}
 }
@@ -562,11 +495,7 @@ OnClose
  {
  timeslot = GetTimeSlot //as you saw above, it's checking the time.
  --
-	if creepymode{
-	
-		"\0\s[666]see you next time\w8\w8\n\n\n\n\n\n                      :)\w8\w8"
-	
-	} elseif passmin >= 5	//This checks to see if you've had them open for at least five minutes.
+	if passmin >= 5	//This checks to see if you've had them open for at least five minutes.
 		{
 
 
@@ -617,25 +546,22 @@ OnClose
  							"\0\s[0]This is another late Saturday night close dialogue.\w8\0\s[0]Yup.\w8"
  						}*/
 						
- 				
-				if nightmode == "OFF" {
-					"\0\s[0]Bye, %(username)!\w8 You should get ready to sleep too.\w8"
-				}
+ 				"\0\s[0]Bye, %(username)!\w8 You should get ready to sleep too.\w8"
+						
 				"\0\s[6]Good night, %(username)! Hope today went great for you!\w8"
 				
  				}
 			else //like above, this is the midnight time slot since it's the last one left.
- 			{
-				if nightmode == "OFF" {
-				
-					"\0\s[0]Good night!\w8 It's really late, maybe try sleeping earlier next time?\w8\s[3] Eheh...\w8"
-					
-					"\0\s[0]Good night!\w8\s[3] Glad to see you're finally getting some sleep...\w8"
-				} 
-				
-				"\0\s[0]Good night!!\w8 See you in the morning!\w8"
-				
-			}
+ 				{
+ 						/*if weekday == 0 //checking if it's the middle of the night on Sunday
+ 						{
+ 							"\0\s[0]This is a middle of the night Sunday close dialogue.\w8\0\s[0]From midnight to five AM on Sunday.\w8"
+ 						}*/
+						"\0\s[0]Good night!\w8 It's really late, maybe try sleeping earlier next time?\w8\s[3] Eheh...\w8"
+						
+						"\0\s[0]Good night!\w8\s[3] Glad to see you're finally getting some sleep...\w8"
+						
+				}
 				
  		}
  		
@@ -661,14 +587,8 @@ OnClose
 
 OnWindowStateRestore
  {
-	if creepymode{
-	
-		"\s[666]cantruncanthide\e"
-	
-	} else {
-		"\0\s[0]Oh, you minimized me!\w8 I'm back now!\w8\e"
-		"\0\s[0]Back from my minimized state, did ya miss me?\w8\e"
-	}
+	"\0\s[0]Oh, you minimized me!\w8 I'm back now!\w8\e"
+	"\0\s[0]Back from my minimized state, did ya miss me?\w8\e"
 }
 
 
@@ -681,22 +601,14 @@ OnGhostChanging
  {
 	if reference0 == "Aurora.EXE" //Replace this with the name of your Sakura character as you put in install.txt or descript.txt. I set this up to use the full ghost's name with Hunter and Smoker but I forget exactly how I did it and I'm having trouble getting it to work again. I think I just didn't define the Sakura or Kero names in either descript.txt or install.txt. You can experiment with it yourself. Otherwise, leave it as your Sakura character's name.
 	{
-		if creepymode{
-			"\0\s[666].\w8.\w8.\w8\w8\e"
-		} else {
-			"\0\s[0]Okie, I'll reload myself!\w8\w8\e"
-		}
+		"\0\s[0]Okie, I'll reload myself!\w8\w8\e"
+		//Replace this dialogue with whatever you like.
 	}
  	else //If you're switching to another Ghost.
 	{
-		if creepymode{
-			"\0\s[666]you can't hide forever.\e"
-		} else {
+		"\0\s[5]Switching over to %(reference0)!\w8 See ya later, %(username)!\w8\w8\e"
 		
-			"\0\s[5]Switching over to %(reference0)!\w8 See ya later, %(username)!\w8\w8\e"
-			
-			"\0\s[5]Bye-bye!\w8 Have fun with %(reference0)!\w8\w8\e"
-		}
+		"\0\s[5]Bye-bye!\w8 Have fun with %(reference0)!\w8\w8\e"
 		//Replace this dialogue with whatever you like. Notice the use of the %(reference0) envelope here? In OnGhostChanging, %(reference0) stores the name of the ghost being swapped to, so if you want to display what you're switching to, you can use %(reference0) as in this example. You don't have to use %(reference0) if you don't want to though.
 	}
 }
@@ -712,20 +624,10 @@ OnGhostChanged
 	--
 	if reference0 == "Aurora.EXE" //As above, this should be the name of your ghost as in install.txt or descript.txt.
 	{
-		if creepymode {
-		
-			creepymode = 0
-			"\0\s[3]...\w4 Are you ok, %(username)?\w8 You look kind of shaken up...\w8"
-		
-		} else {
-			"\0\s[5]Finished reloading myself!\w8\e"
-		}
+		"\0\s[5]Finished reloading myself!\w8\e"
 	}
 	else //If you're switching to them from another ghost...
 	{
-		
-		creepymode = 0
-		
 		"\0\s[0]Bye-bye, %(reference0)!\w8\e"
 
 		//Again, %(reference0) in this function is the name of the ghost in question. As above, replace these two lines of dialogue what what'd be appropriate for your ghost.

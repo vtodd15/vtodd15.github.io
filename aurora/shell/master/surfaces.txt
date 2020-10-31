@@ -68,8 +68,16 @@
 //                9 - bored expression 
 //surface0 is different because i made it first when i didnt have a plan for this. so. dont mess with it
 
-//2000+ are spooky surfaces
+//If you look at the image files themselves, you'll see that all the images for Girl are in the 1000 range, and the images for Triangle are in the 2000. ALL YOU NEED TO DO is draw your character with whatever expression you want and save it over the appropriate file. That way, you won't have to adjust any of the coding in surfaces.txt itself, you'll just be replacing the images. You should read through this file anyway though to get an idea of how it works.
 
+//However, there is one snag here! Girl's default pose has blinking eyes and a moving mouth, and for that, you'll need to study the files for that pose very carefully. Note that the different eye frames and mouth frames are separate files and only have the eyes and the mouths in them. You'll have to do the same. All you have to do is select around your eyes, inverse, delete everything, and save it for each eye frame, and likewise for the mouth frames. I talk about this in a bit more detail in the making images section of the walkthrough page. Hopefully it won't be too hard. If worse comes to worse and you just can't get it to work, you can delete the blinking and talking sequences from surface0 if you have to.
+//(Basically, what surfaces.txt does is overlay the mouth or eye frames on top of your base image to make the animation. That's why all you want in that overlaid frame is the eyes or the mouth.)
+//Likewise, if you want to add blinking eyes and a moving mouth to your other poses, you'll have to do the same thing as with the default pose - make individual frames for the eyes and mouth, copy and paste the code for the blinking/mouth sections in surface0 to the other surface you want to add them to, and replace the file numbers where appropriate.
+
+//You can change the size of the images if you want to draw a much bigger character than I did! If you do that though, MAKE SURE ALL YOUR IMAGES FOR THAT CHARACTER ARE THE SAME SIZE. So if Girl's image dimensions are 400x400, and you draw a Main Character that's 800x800, MAKE SURE ALL the images for your main character are also 800x800! This applies to the side character too, ALL the images for your side character should be the same dimensions! If your side character is 250x250, all side character images should be 250x250!
+//The main character and the side character DON'T have to be the same size though, so you can have a tiny sidekick and a huge dude if you want, like... I dunno, Gillian Seed and Metal Gear Mk. II for example, or Torin and Boggle. The image dimensions just need to be consistent throughout for each character, because believe me, it will make things MUCH, MUCH easier for you from this point on if you do that.
+
+//SAVE ALL IMAGES FOR YOUR MAIN CHARACTER IN THE 1000-1999 RANGE, AND SAVE ALL IMAGES FOR YOUR SECOND CHARACTER IN THE 2000-2999 RANGE. Not to get into the exact reason why right now but just trust me, this will save you a headache in the long run. I'm looking at you, self reading this in the future. 
 
 //ONE MORE NOTE - If you are planning on doing a single person ghost without a sidekick character at all, all you have to do is save a blank png over all the files for the secondary character, ESPECIALLY Surface10.png. Then just don't write any dialogue for the secondary character in the .dic files. Problem solved.
 //More advanced users can even rewrite the poses in this file originally intended for the secondary character, 11-19, for their main character instead if you need to and save main character poses over the second character ones, AS LONG AS Surface10.png is blank.
@@ -112,7 +120,6 @@ surface0
 {
 collision0,69,43,185,85,Head
 collision1,97,86,160,148,Face
-collision2,185,165,209,191,Hand
 
 //Collisions define "hot spots" on your ghost where the user can pet or double click them (as defined in mouse.dic). You can see that there are two collisions here, collision0 and collision1. You can add more by copypasting and raising the number, like collision2, collision3, collision4, and so on.
 //The four numbers after that are x/y coordinates. Specifically, the first two numbers are the x/y coordinates of the TOP LEFT corner of your hotspot. The third and fourth numbers are the coordinates of the BOTTOM RIGHT corner of the hotspot. Essentially, this is outlining a rectangle.
@@ -867,137 +874,6 @@ surface16
 	//paper
 	6interval, never
 	6pattern0,1771,0,overlay,0,0
-	
-
-}
-
-//creepy aurora
-surface666{
-
-	element0,overlay,surface2008.png,0,0
-	
-	//blinking
-	0interval,random,16
-	0pattern0,-1,10,overlay,0,0
-	0pattern1,2018,5,overlay,0,0
-	0pattern2,1002,10,overlay,0,0
-	0pattern3,-1,3,overlay,0,0
-	0pattern4,2018,50,overlay,0,0
-	0pattern5,1002,10,overlay,0,0
-	0pattern6,2038,3,overlay,0,0
-	0pattern7,2028,50,overlay,0,0
-	0pattern8,1002,10,overlay,0,0
-	0pattern9,-1,3,overlay,0,0
-	
-	//talking. can steal mouth from base pose lol
-	1interval,talk,4
-	1pattern0,0,0,alternativestart,[2.3.4]
-	
-	2interval,never
-	2pattern0,1102,10,overlay,0,0
-	2pattern1,1101,13,overlay,0,0
-	2pattern2,-1,10,overlay,0,0
-
-	3interval,never
-	3pattern0,1101,14,overlay,0,0
-	3pattern1,-1,10,overlay,0,0
-
-	4interval,never
-	4pattern0,1102,14,overlay,0,0
-	4pattern1,-1,10,overlay,0,0
-
-	5interval,never
-	5pattern0,1100,0,overlay,0,0
-		
-	//random intervals
-	
-	//scrambled
-	6interval,random, 80
-	6pattern0,2001,5,overlay,0,0
-	6pattern1,-1,5,overlay,0,0
-	6pattern2,2001,5,overlayfast,0,0
-	6pattern3,-1,5,overlay,0,0
-	6pattern4,2001,5,overlay,0,0
-	6pattern5,-1,5,overlay,0,0
-	
-	//scrambled but less intense
-	7interval,random, 80
-	7pattern0,2001,5,overlayfast,0,0
-	7pattern1,-1,5,overlay,0,0
-	7pattern2,2001,5,overlay,0,0
-	7pattern3,-1,5,overlay,0,0
-	
-	//color block 1
-	8interval,random, 80
-	8pattern0,2005,5,overlayfast,0,0
-	8pattern1,-1,10,overlay,0,0
-	
-	//color block 2
-	9interval,random, 80
-	9pattern0,2005,5,overlay,0,0
-	9pattern1,-1,10,overlay,0,0
-	
-	//color block 3
-	10interval,random, 80
-	10pattern0,2006,5,overlayfast,0,0
-	10pattern1,-1,10,overlay,0,0
-	
-	//color block 3
-	11interval,random, 80
-	11pattern0,2009,6,replace,0,0
-	11pattern1,2006,5,replace,0,0
-	11pattern2,-1,10,overlay,0,0
-
-	//scrambled but a lil wiggle 
-	12interval,random, 80
-	12pattern0,2001,5,replace,0,0
-	12pattern1,2008,5,replace,-4,10
-	12pattern2,2001,5,replace,4,-4
-	12pattern3,2008,5,replace,-3,-7
-	12pattern4,2001,5,replace,0,0
-	12pattern5,2008,5,replace,4,6
-	12pattern6,2008,5,replace,0,0
-	
-	//hard mix w/ wiggle
-	13interval,random, 80
-	13pattern0,2000,5,replace,0,0
-	13pattern1,2008,5,replace,0,0
-	13pattern2,2000,5,replace,10,10
-	13pattern3,2008,5,replace,-6,10
-	13pattern4,2000,5,replace,-5,-10
-	13pattern5,-1,5,replace,0,0
-	
-	//obscured face
-	14interval,random, 80
-	14pattern0,2002,5,replace,0,0
-	14pattern1,-1,5,replace,0,0
-	14pattern2,2002,5,replace,-12,0
-	14pattern3,-1,10,replace,0,0
-	14pattern4,2002,5,replace,8,0
-	14pattern5,-1,10,replace,0,0
-	
-	//yuri ddlc
-	15interval,random, 80
-	15pattern0,2004,5,overlay,0,0
-	15pattern1,-1,10,overlay,0,0
-	15pattern2,2009,5,replace,2,10
-	15pattern3,-1,30,replace,0,0
-	15pattern4,2004,5,replace,2,10
-	15pattern5,-1,10,replace,0,0
-	
-	//goodbye eye
-	16interval,random, 80
-	16pattern0,2009,0,replace,0,0
-	16pattern1,2003,40,overlay,0,0
-	16pattern2,2009,60,replace,0,0
-	16pattern3,-1,40,overlay,0,0
-	
-	//bluered
-	17interval,random, 80
-	17pattern0,2007,0,replace,5,-12
-	17pattern1,2008,5,replace,-3,-2
-	17pattern2,2010,7,replace,7,4
-	17pattern3,-1,5,replace,12,7
 	
 
 }

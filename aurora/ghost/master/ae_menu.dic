@@ -35,7 +35,7 @@ MenuRun
  	nowhour = Getnowhour
 	//These four statements basically get the day of the week, whether it's AM or PM, the hour, and the time. It's putting together the information to display the time at the bottom of the balloon. Pay it no mind.
 	--
-	"\n\n[half]\_q" //The \n\n means two new lines as detailed in the walkthrough, and \_q means quick session, meaning all the text from this point on will display instantly instead of a few letters at a time like normal ghost dialogue.
+	"\n\n[half]\b2" //The \n\n means two new lines as detailed in the walkthrough, and \_q means quick session, meaning all the text from this point on will display instantly instead of a few letters at a time like normal ghost dialogue.
 	--
 	if pomoOn && pomogoal == ""{
 	
@@ -52,6 +52,8 @@ MenuRun
 		"You're on break! Breaktime ends at %(pomohour):%(pomomin).\n\n[half]"
 	
 	} 
+	--
+	"\_q"
 	--
 	if lastTalk != "" //What this does is check to see if the ghost has already said a random bit of dialogue on its own, essentially by seeing if the lastTalk thing is NOT empty (!= means "does not equal").
 	{
@@ -73,9 +75,7 @@ MenuRun
 	"\![*]\q[Info,infomenu]\n/
 	\![*]\q[Games,OnGamesMenu]\n/
 	\![*]\q[Productivity,OnProduMenu]\n/
-	\![*]\q[Misc,OnMiscMenu]\n/
-	\![*]\q[Shop,OnShopMenu]\n/
-	\![*]\q[Collectibles,OnCollectiblesMenu]\n\n[half]/
+	\![*]\q[Misc,OnMiscMenu]\n\n[half]/
 	\![*]\q[Config,configmenu]\n/
 	\![*]\q[Functions,dosomething]\n\n[half]/
 	//\![*]\q[Test variable,testvariable]\n\n[half]/
@@ -155,7 +155,7 @@ Select.whatudo{
 
 Select.whoisurgod{
 
-	"\0\s[0]I was made by a person named Vita.\w8 They're an aspiring game developer, although they also like to take on little coding or art projects not related to games.\w8 Umm....\w4 What else...\x\cThey love coffee and the horror genre, and glitch aesthetics.\w8 You probably didn't want to know \f[italic,true]that\f[italic,false] much, but hey, you asked :P\x\cYou can find some of their websites linked in my right-click menu, under 'Contact Vita'!\n\n[half]"
+	"\0\s[0]I was made by a person named Vita.\w8 Although, they also go by Error, or Demo.\w8 They're a little indecisive...\x\cThey're an aspiring game developer, although they also like to take on little coding or art projects not related to games.\w8 Umm....\w4 What else...\x\cThey love coffee and the horror genre, and glitch aesthetics.\w8 You probably didn't want to know \f[italic,true]that\f[italic,false] much, but hey, you asked :P\x\cYou can find some of their websites linked in my right-click menu, under 'Contact Vita'!\n\n[half]"
 	--
 	"\_q\0\s[0]Back to...\n\n[half]"
 	--
@@ -287,16 +287,13 @@ TalkConfig
 	--
 	"\f[bold,1]Talk Rate:\f[bold,0] - %(talktime) \f[sup,1](\q[Change it?,talkinter])\f[sup,0]\n\n[half]"
 	--		
-	{
-	"\![*]Enable Uninstall? (Now: %(deleteshitai))\n\q[ON,deleteon] \q[OFF,deleteoff]\n\n[half]"
-	}
+		{
+		"\![*]Enable Uninstall? (Now: %(deleteshitai))\n\q[ON,deleteon] \q[OFF,deleteoff]\n\n[half]"
+		}
 	--
 	"\![*]Enable horror content? (Now: %(spookystuff))\n\q[ON,spookyon] \q[OFF,spookyoff]\n\n[half]"
 	--
 	"\![*]Weather on main menu? (Now: %(weathermenu))\n\q[ON,weatheron] \q[OFF,weatheroff]\n\n[half]"
-	--
-	"\![*]Enable night mode? (Now: %(nightmode))\n\q[ON,nighton] \q[OFF,nightoff]\n/
-	\f[color,gray]Aurora won't bug you to go to bed\f[color,default]\n\n[half]"
 	--
 	"\![*]\q[Back to the menu,OnBACKTOMENU]\e"
 }
@@ -370,18 +367,6 @@ Select.spookyon
 Select.spookyoff
 {
 	spookystuff = "OFF"
-	TalkConfig
-}
-
-Select.nighton
-{
-	nightmode = "ON"
-	TalkConfig
-}
-
-Select.nightoff
-{
-	nightmode = "OFF"
 	TalkConfig
 }
 
@@ -860,15 +845,7 @@ OnChoiceTimeout
 */
 Select.testvariable
 {
-	
-	_file = "\\test.txt"
-	if FOPEN(_file,"w") {
-	
-		FWRITE(_file,"lolololol")
-	
-	}
-	FCLOSE(_file);
-	
+	OnDownloadTest
 	
 }
 
