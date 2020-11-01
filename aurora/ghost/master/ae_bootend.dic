@@ -401,7 +401,7 @@ OnBoot
 	}
 	elseif dayslot == "10month 31day"
 	{
-		if RAND(100) < 50  || spookystuff = "OFF" { //never activate creepymode if spooky switch is off
+		if RAND(100) < 50  || spookystuff == "OFF" { //never activate creepymode if spooky switch is off
 		
 			if dayslot == userbirthday {
 			
@@ -523,7 +523,7 @@ normalboottalk
 		}
 		else //the last timeslot we haven't done is midnight, which is what's under here.
 		{
-			if RAND(100) < 5 && spookystuff = "ON"{
+			if RAND(100) < 5 && spookystuff == "ON"{
 			
 				"\0\s[666]it's late\w8\w8\w8\n\nyou should be asleep\w8\e"
 			
