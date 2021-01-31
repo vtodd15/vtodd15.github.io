@@ -189,6 +189,9 @@ OnInput8ball{
 // _regwind='' 21
 // _reghumidity='' 22
 
+//moon
+//_regphase = 23
+
 
 
 OnDownloadRegex {
@@ -982,7 +985,7 @@ OnMoonFound{
 	//line being read
 	_buff=""
 	//regular expressions to extract data
-	_regphase=',"Phase: <span>([\w|\s]*)<./span>'
+	_regphase=regex[23]
 	_found = 0;
 	//using UTF-8 charset
 	FCHARSET(1)
