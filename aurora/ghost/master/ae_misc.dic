@@ -190,8 +190,7 @@ OnInput8ball{
 // _reghumidity='' 22
 
 //moon
-//_regphase = 23
-
+//_regphase="" 23
 
 
 OnDownloadRegex {
