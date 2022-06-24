@@ -1,0 +1,10 @@
+Charset,UTF-8
+install,703214898
+homeurl_found,1
+surfacecount,47
+homeurl,https://vtodd15.github.io/aurora/
+update_result,OK(184)
+firstboot,703214936
+update_time,709347841
+commitmemorysize,1447857
+lastboot,709347800
