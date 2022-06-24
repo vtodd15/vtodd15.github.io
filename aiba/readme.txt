@@ -15,6 +15,7 @@ Aiba contains mentions of canon-typical gore/violence, "horny anime bullshit" (f
 ------------------------Features
 
 -Custom pronouns for user
+-Two dressup items (found in the right click menu under Clothes/Dressup)
 -Sleep reminder, with option to remind user up to an hour before bedtime
 -General reminders
 	-Can set reminder to repeat daily, weekly, or every 30 days
