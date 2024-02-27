@@ -1,5 +1,5 @@
 //*************************  Games Menu Stuff  **********************************************
-Select.OnGamesMenu{
+OnGamesMenu{
 	"\0\s[0]\b2Wanna play a game?\n\n[half]"
 	"\0\s[0]\b2Oh! Let's play a game!\n\n[half]"
 	"\0\s[1]\b2Watch out! I'm pretty good at these :P\n\n[half]"

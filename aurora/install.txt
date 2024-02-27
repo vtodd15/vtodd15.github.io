@@ -5,8 +5,8 @@
 charset,UTF-8
 type,ghost
 name,Aurora.EXE
-directory,aurora_dot_exe
+directory,aurora_dot_exe_yy
 
 //This tells the program what balloon your ghost will be using. Replace "z_simple" and point it at your balloon directory if you've made one, or use a default balloon directory. 
 
-balloon.directory,auroraballoon
+balloon.directory,auroraballoon_yy

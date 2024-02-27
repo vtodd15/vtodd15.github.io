@@ -17,7 +17,7 @@ Tumblr - zarla-s.tumblr.com
 
 -------------------------------------------
 
-You can contact me, Vita, either through the sites listed in the "Contact Vita" menu, or through discord (uraniumUmbrella#6334) or email (yuyugamedev@gmail.com). Please let me know if you find any bugs, or if you have any feedback!
+You can contact me, Vita, either through the sites listed in the "Contact Vita" menu, or email (yuyugamedev@gmail.com). Please let me know if you find any bugs, or if you have any feedback!
 
 -------------------------------------------
 
@@ -37,6 +37,9 @@ f1 - Open this readme
 
 Version History
 
+02.27.24
+	Administrative stuff
+		Disabling weather for now. Will be updated in the future to use Zi's weather station plugin.
 10.20.20 v1.2
 	Bug fixes
 		Weather

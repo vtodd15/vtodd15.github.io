@@ -3,3 +3,5 @@ ghost/master/yaya_variable.cfg,nonar,noupdate
 ghost/master/profile/,nonar,noupdate
 ghost/master/var/,nonar,noupdate
 shell/purple/,nonar,noupdate
+auroraballoon_yy/,noupdate
+shell/master/profile/,nonar,noupdate
