@@ -6,9 +6,9 @@ type,ghost
 sakura.name,Aiba
 kero.name,Blank
 
-craftman,Vita
-craftmanw,Vita
-craftmanurl,https://twitter.com/yuyudev
+craftman,Vita/yuyudev
+craftmanw,Vita/yuyudev
+craftmanurl,https://thatoddhaystack.neocities.org/ukagaka/
 
 sstp.allowunspecifiedsend,0
 shiori,yaya.dll

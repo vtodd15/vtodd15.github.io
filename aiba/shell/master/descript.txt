@@ -5,8 +5,8 @@ charset,UTF-8
 type,shell
 
 name,AI-Ball Form
-craftman,Vita
-craftmanurl,https://twitter.com/yuyudev
+craftman,Vita/yuyudev
+craftmanurl,https://thatoddhaystack.neocities.org/ukagaka/
 
 sakura.balloon.offsetx,0
 sakura.balloon.offsety,0

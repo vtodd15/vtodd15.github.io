@@ -6,7 +6,7 @@ Aiba has a spoiler toggle in her config menu that defaults to "none". "Minor" wi
 
 In terms of timeline, no spoiler toggle and minor spoiler toggle take place vaguely after Mizuki end. Major spoiler toggle takes place after Resolution end. 
 
-If you encounter a bug (even something as small as a spelling mistake), please contact me either through discord (uraniumUmbrella#6334), email (yuyugamedev@gmail.com), or any of the social sites listed under Dev Socials in Aiba's right click menu. 
+If you encounter a bug (even something as small as a spelling mistake), please contact me either through email (yuyugamedev@gmail.com), or any of the social sites listed under Dev Socials in Aiba's right click menu. 
 
 ------------------------Content Warnings
 
@@ -59,4 +59,5 @@ f1 - Open this readme
 
 ------------------------Version History
 
+2.27.24 - v1.0.1: Changing update location to a different github account
 6.24.22 - v1.0: Initial release! Happy AI:NI release as well!

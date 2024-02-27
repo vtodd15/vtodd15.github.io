@@ -2,6 +2,8 @@ aiba/ghost/master/profile/*
 aiba/ghost/master/yaya_variable.cfg
 aiba/ghost/master/var/*
 
+aiba/aitsf_balloon_yy/*
+
 aurora/ghost/master/profile/*
 aurora/ghost/master/yaya_variable.cfg
 aurora/ghost/master/var/*
@@ -14,3 +16,5 @@ aurora/auroraballoon/*
 aurora/developer_options.txt
 aurora/shell/master/*.clip
 
+aiba/ghost/master/yaya_ssp_debug.log
+aiba/developer_options.txt
